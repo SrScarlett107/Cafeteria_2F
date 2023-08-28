@@ -1,11 +1,20 @@
 package com.Cafeteria.INF2FM.myproject2f.model;
 
-public class Cardapio {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "cardapios")
+public class Cardapio {
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Long codCardapio;
 	private String descricao;
 	private double valor;
+
 	
 	public void setId(Long id) {
 		this.id = id;
@@ -13,12 +22,6 @@ public class Cardapio {
 	public long getId() {
 		return id;
 		
-	}
-	public void setCodCardapio(Long codCardapio) {
-		this.codCardapio = codCardapio;
-	}
-	public long getCodCardapio() {
-		return codCardapio;
 	}
 	
 	public void setDescricao(String descricao) {
