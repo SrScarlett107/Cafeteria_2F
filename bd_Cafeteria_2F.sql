@@ -1,41 +1,18 @@
 use master if exists(
-select * from SYS.databases where name = 'bd_Cafeteria_2F')
-drop database bd_Cafeteria_2F
+select * from SYS.databases where name = 'myCafeteria2f')
+drop database myCafeteria2f
 go
-create database bd_Cafeteria_2F
+create database myCafeteria2f
 go
-use bd_Cafeteria_2F
+use myCafeteria2f
 
-create table Tabela1(
+create table Cardapio(
 id int identity,
-nome varchar(100) not null,
+descricao varchar(200) not null,
+valor decimal(10,2) not null,
 primary key (id),
 )
-insert Tabela1 (nome) values ('valor 1')
 
-create table Tabela2(
-id int identity,
-nome varchar(100) not null,
-statusItem varchar(20) not null,
-tabela_id int not null,
-
-primary key (id),
-foreign key(tabela_id) references Tabela1(id)
-)
-insert Tabela2 (nome, statusItem, tabela_id) values ('valor 2','Ativo', 1)
-
-create table Usuario(
-id int identity,
-nome varchar(100) not null,
-email varchar(100) unique not null,
-senha varchar(100) not null,
-nivelAcesso varchar(10) null,
-foto varbinary(MAX) null,
-statusUsuario varchar(20) not null,
-
-primary key (id)
-)
-insert Usuario( nome, email, senha, nivelAcesso, foto, statusUsuario) values('ana sá', 'ana@gmail.com', '123', 'ADMIN', null, 'ATIVO')
 
 create table Categoria
 (
