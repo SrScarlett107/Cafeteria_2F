@@ -9,7 +9,7 @@
     <body>
         <section>
         <form th:action="@{/coffeteria/cardapio/novo-cardapio}" th:object="${cardapio}" method="post">
-            <h1>CAFETERIA - </h1>
+            <h1>CAFETERIA  </h1>
             <br>
 <strong>Nome do Cardápio:</strong><input type="text" th:field="*{nome}" id="nome" placeholder="Nome do Cardápio aqui*" > 
 <br>
@@ -23,7 +23,6 @@
 </p>
 <br>
 <br>
-<strong>Data de registro de Cardápio</strong>
 
 <button type="submit">ENVIAR</button>
        </form>
