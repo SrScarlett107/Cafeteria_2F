@@ -6,13 +6,6 @@ create database myCafeteria2f
 go
 use myCafeteria2f
 
-create table Cardapio(
-id int identity,
-descricao varchar(200) not null,
-valor decimal(10,2) not null,
-primary key (id),
-)
-
 
 create table Categoria
 (
