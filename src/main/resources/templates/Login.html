@@ -1,6 +1,11 @@
- <html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <head>
-        <title>Formulário</title>
+        <title>Login ADM</title>
         <meta charset="UTF-8">
         <style>
         *{
@@ -76,20 +81,14 @@ form textarea{
 </head>
     <body>
         <section>
-        <form th:action="@{/coffeteria/cardapio/novo-cardapio}" th:object="${cardapio}" method="post">
-
+        <form th:action="@{/coffeteria/Login/Login-ADM}" th:object="${Login}" method="post">
             <h1>CAFETERIA  </h1>
             <br>
-<strong>Nome do Cardápio:</strong><input type="text" th:field="*{nome}" id="nome" placeholder="Nome do Cardápio aqui*" > 
+<strong>Nome de usuario:</strong><input type="text" th:field="*{nome}" id="nome" placeholder="Usuario*" maxlength="30"> 
 <br>
 <br>
-<strong>Descrição do Cardápio:</strong>
-<textarea name="message" th:field="*{descricao}" id="descricao" cols="30" rows="10" maxlength="500" placeholder="Descrição do Cardápio*"></textarea>
-<br>
-<strong>Valor em média:</strong>
-<p>
-    <input type="text" th:field="*{valor}" id="valor" name="media" placeholder="média*">
-</p>
+<strong>Senha:</strong>
+<input type="password" name="senha" id="senha" th:field="*{senha}" placeholder="Senha*" maxlength="50">
 <br>
 <br>
 

@@ -29,3 +29,5 @@ statusProduto varchar(20) not null,
 primary key (id),
 foreign key (categoria_id) references Categoria(id)
 )
+
+select * from cardapios;
