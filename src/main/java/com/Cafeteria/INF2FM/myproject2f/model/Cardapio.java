@@ -1,6 +1,6 @@
 package com.Cafeteria.INF2FM.myproject2f.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,13 +17,15 @@ public class Cardapio {
     private String nome;
 	private String descricao;
 	private double valor;
-	private LocalDateTime dataDoCadastro;
+	private LocalDate dataDoCadastro;
+	private boolean codStatusCardapio;
+	
 
 	
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 		
 	}
@@ -48,10 +50,16 @@ public class Cardapio {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public LocalDateTime getDataDoCadastro() {
+	public LocalDate getDataDoCadastro() {
 		return dataDoCadastro;
 	}
-	public void setDataDoCadastro(LocalDateTime dataDoCadastro) {
+	public void setDataDoCadastro(LocalDate dataDoCadastro) {
 		this.dataDoCadastro = dataDoCadastro;
+	}
+	public boolean getCodStatusCardapio() {
+		return codStatusCardapio;
+	}
+	public void setCodStatusCardapio(boolean codStatusCardapio) {
+		this.codStatusCardapio = codStatusCardapio;
 	}
 }

@@ -76,25 +76,7 @@ form textarea{
 </head>
     <body>
         <section>
-        <form th:action="@{/coffeteria/cardapio/add-card}" th:object="${cardapio}" method="post">
-
-            <h1>CAFETERIA  </h1>
-            <br>
-<strong>Nome do Cardápio:</strong><input type="text" th:field="*{nome}" id="nome" placeholder="Nome do Cardápio aqui*" > 
-<br>
-<br>
-<strong>Descrição do Cardápio:</strong>
-<textarea name="message" th:field="*{descricao}" id="descricao" cols="30" rows="10" maxlength="500" placeholder="Descrição do Cardápio*"></textarea>
-<br>
-<strong>Valor em média:</strong>
-<p>
-    <input type="text" th:field="*{valor}" id="valor" name="media" placeholder="média*">
-</p>
-<br>
-<br>
-
-<button type="submit">ENVIAR</button>
-       </form>
+        <h1>Cardapio Cadastrado com sucesso</h1>
     </section>
     </body>
 </html>

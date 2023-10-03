@@ -1,15 +1,20 @@
 package com.Cafeteria.INF2FM.myproject2f.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.Cafeteria.INF2FM.myproject2f.model.Cardapio;
+import com.Cafeteria.INF2FM.myproject2f.repository.CardapioRepository;
 
 @Controller
 @RequestMapping("/coffeteria/cardapio")
 public class CardapioController {
+	@Autowired
+	private CardapioRepository cardapioRepository;
 	
 	@GetMapping("/novo-cardapio")
 	public String novoCardapio(Model model, Cardapio cardapio) {
@@ -18,11 +23,22 @@ public class CardapioController {
 		return "Formulário";
 	}
 	
+	//add cardapio no banco de dados
+	@PostMapping("/add-card")
 	String addCardapio(Model model, Cardapio cardapio) {
-		//trabalhando com datas
+		cardapio.setCodStatusCardapio(true);
 		
-		String pattern = "yyyy-MM-dd";
-		return null;
+		Cardapio cardapioDb= cardapioRepository.save(cardapio);
+		
+	
+		return "redirect:/coffeteria/cardapio/sucesso-cardapio";
+	}
+	
+	//abrir pagina de sucesso do cadastro
+	@GetMapping("/sucesso-cardapio")
+	String showPageSucessCardapio() {
+		
+		return "pagina-sucesso";
 	}
 
 }
