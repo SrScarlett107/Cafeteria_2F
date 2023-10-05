@@ -28,7 +28,7 @@ public class CardapioController {
 	String addCardapio(Model model, Cardapio cardapio) {
 		cardapio.setCodStatusCardapio(true);
 		
-		Cardapio cardapioDb= cardapioRepository.save(cardapio);
+		Cardapio cardapioDb = cardapioRepository.save(cardapio);
 		
 	
 		return "redirect:/coffeteria/cardapio/sucesso-cardapio";
