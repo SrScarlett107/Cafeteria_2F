@@ -36,3 +36,22 @@ statusProduto varchar(20) not null,
 primary key (id),
 foreign key (categoria_id) references Categoria(id)
 )
+
+create table Adm
+(
+id int identity,
+nome_ADM varchar(50) not null,
+senha_adm varchar(30),
+primary key (id),
+)
+
+create table Pedido
+(
+id int identity,
+num_pedido varchar(100) not null,
+valor decimal(10,2) not null,
+produto_id int not null,
+
+primary key (id),
+foreign key (produto_id) references Produto(id)
+)
