@@ -1,0 +1,108 @@
+ <html>
+    <head>
+        <title>Formulário</title>
+        <meta charset="UTF-8">
+        <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: rgb(241, 167, 158);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 45px;
+    background-color: rgb(212, 134, 126);
+    width: 500px;
+    border: 5px solid black;
+    
+}
+section form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: aliceblue;
+}
+form input{
+    padding: 15px;
+    outline: none;
+    border: 0;
+    margin-bottom: 20px;
+    font-size: 15px;
+    border-radius: 15px;
+    background-color: rgb(238, 156, 147);
+}
+form button{
+    padding: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    background: transparent;
+    border: 2px solid rgb(0, 0, 0);
+    margin-bottom: 20px;
+}
+form button:hover{
+
+    background-color: rgb(209, 209, 209);
+}
+.link{
+    padding: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    background: transparent;
+    border: 2px solid rgb(0, 0, 0);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form textarea{
+     border-radius: 10px;
+     background-color: rgb(238, 156, 147);
+     font-family:Arial, Helvetica, sans-serif;
+}
+</style>
+  
+    
+</head>
+    <body>
+        <section>
+        <div>
+        <h2 >Lista de Produtos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Status</th>
+                    <th><a href="">Editar</a></th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr th:each="cardapio: ${cardapios}">
+                    <td th:text="${cardapio.id}"></td>
+                    <td th:text="${cardapio.nome}"></td>
+                    <td th:text="${cardapio.descricao}"></td>
+                    <td th:text="${cardapio.valor}"></td>
+                    <td th:text="${cardapio.codStatusCardapio} ? 'Ativo': 'Inativo'"></td>
+                    <td><a href="#" ><button>
+                    </a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </section>
+    </body>
+</html>

@@ -1,5 +1,8 @@
 package com.Cafeteria.INF2FM.myproject2f.model;
 
+import java.time.LocalDate;
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,14 +15,18 @@ public class Cardapio {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+    private String nome;
 	private String descricao;
 	private double valor;
+	private LocalDate dataDoCadastro;
+	private boolean codStatusCardapio;
+	
 
 	
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 		
 	}
@@ -37,5 +44,23 @@ public class Cardapio {
 	public double getValor() {
 		return valor;
 		
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public LocalDate getDataDoCadastro() {
+		return dataDoCadastro;
+	}
+	public void setDataDoCadastro(LocalDate dataDoCadastro) {
+		this.dataDoCadastro = dataDoCadastro;
+	}
+	public boolean getCodStatusCardapio() {
+		return codStatusCardapio;
+	}
+	public void setCodStatusCardapio(boolean codStatusCardapio) {
+		this.codStatusCardapio = codStatusCardapio;
 	}
 }
