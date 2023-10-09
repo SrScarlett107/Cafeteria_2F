@@ -3,6 +3,7 @@ package com.Cafeteria.INF2FM.myproject2f.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -84,7 +85,7 @@ public String todos(Model model){
 		
 	
 		cardapioRepository.save(cardapio);
-		return "redirect:/api/v1/produto/todos-cardapios";
+		return "redirect:/coffeteria/cardapio/todos-cardapios";
 	}
 
 	@PostMapping
@@ -95,7 +96,6 @@ public String todos(Model model){
 		return "redirect:/";
 	}
 
-	
 	
 
 
