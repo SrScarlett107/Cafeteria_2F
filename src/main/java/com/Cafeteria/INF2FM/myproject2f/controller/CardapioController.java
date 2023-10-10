@@ -33,9 +33,11 @@ public class CardapioController {
 	@Autowired
 	private CardapioRepository cardapioRepository;
 	
-@GetMapping("todos-cardapios")
+@GetMapping("/todos-cardapios")
 public String todos(Model model){
 	model.addAttribute("Cardapios", cardapioRepository.findAll());
+
+	
 	return "Cardapios";
 }
 
@@ -59,10 +61,7 @@ public String todos(Model model){
 	
 		return "redirect:/coffeteria/cardapio/sucesso-cardapio";
 	}
-	@GetMapping("/todos")
-	public List<Cardapio> listarTodos(){
-		return cardapioRepository.findAll();
-	}
+	
 	@GetMapping("/editar-card/{id}")
 	public String showUpdateForm(@PathVariable("id") long id, ModelMap model) {
 		Cardapio cardapio = cardapioRepository.findById(id)
@@ -72,6 +71,8 @@ public String todos(Model model){
 		model.addAttribute("cardapio", cardapio);
 		return "editar-card";
 	}
+	
+	
 
 @PostMapping("/update/{id}")
 	public String atualizarCard(
