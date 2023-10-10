@@ -85,13 +85,13 @@ form textarea{
             <thead>
                 <tr>
                     <th>ID</th>
-             
+             <th></th>
                     <th>Nome</th>
-           
+           <th></th>
                     <th>Descrição</th>
-                  
+                  <th></th>
                     <th>Valor</th>
-             
+             <th></th>
                     <th>Status</th>
                     <th><a href="">Editar</a></th>
                 </tr>
@@ -100,13 +100,13 @@ form textarea{
                 <tr th:each="cardapio: ${Cardapios}">
                 
                     <td th:text="${cardapio.id}"></td>
-                
+                <td></td>
                     <td th:text="${cardapio.nome}"></td>
-                    
+                    <td></td>
                     <td th:text="${cardapio.descricao}"></td>
-                    
+                    <td></td>
                     <td th:text="${cardapio.valor}"></td>
-                 
+                 <td></td>
                     <td th:text="${cardapio.codStatusCardapio} ? 'Ativo': 'Inativo'"></td>
                     <td>
                  
