@@ -14,7 +14,7 @@ body{
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: rgb(241, 167, 158);
+    background-color: rgb(151, 85, 35);
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 section{
@@ -23,7 +23,7 @@ section{
     justify-content: center;
     flex-direction: column;
     padding: 10px 45px;
-    background-color: rgb(212, 134, 126);
+    background-color: rgb(212, 162, 121);
     width: 500px;
     border: 5px solid black;
     
@@ -41,7 +41,7 @@ form input{
     margin-bottom: 20px;
     font-size: 15px;
     border-radius: 15px;
-    background-color: rgb(238, 156, 147);
+    background-color: rgb(255, 255, 255);
 }
 form button{
     padding: 15px;
@@ -67,7 +67,7 @@ form button:hover{
 
 form textarea{
      border-radius: 10px;
-     background-color: rgb(238, 156, 147);
+     background-color: rgb(255, 255, 255);
      font-family:Arial, Helvetica, sans-serif;
 }
 </style>
@@ -80,15 +80,15 @@ form textarea{
 
             <h1>CAFETERIA  </h1>
             <br>
-<strong>Nome do Cardápio:</strong><input type="text" th:field="*{nome}" id="nome" placeholder="Nome do Cardápio aqui*" maxlength="30px" required> 
+<strong>Nome do Cardápio:</strong><input type="text" th:field="*{nome}" id="nome" required placeholder="Nome do Cardápio aqui*" maxlength="30px" pattern="[A-z\s]+$"> 
 <br>
 <br>
 <strong>Descrição do Cardápio:</strong>
-<textarea name="message" th:field="*{descricao}" id="descricao" cols="30" rows="10" maxlength="500" placeholder="Descrição do Cardápio*" required></textarea>
+<textarea name="message" th:field="*{descricao}" id="descricao" cols="30" rows="10" maxlength="500" placeholder="Descrição do Cardápio*" required pattern="[A-z\s]+$"></textarea>
 <br>
 <strong>Valor em média:</strong>
 <p>
-    <input type="number" th:field="*{valor}" id="valor" name="media" placeholder="média*" required maxlength="6px">
+    <input type="number" th:field="*{valor}" id="valor" name="media" placeholder="média*" required pattern="[0-9]+$" maxlength="6px">
 </p>
 <br>
 <br>
