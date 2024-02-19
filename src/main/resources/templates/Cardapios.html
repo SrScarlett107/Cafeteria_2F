@@ -112,10 +112,16 @@ form textarea{
                  
                     <a th:href="@{/coffeteria/cardapio/editar-card/{id}(id=${cardapio.id})}" class="btn btn-primary">
                                       	<i class="fas fa-edit ml-2"></i>
+                                      	
+                              
                    </td>
                 </tr>
+               
             </tbody>
         </table>
+          <form action="novo-cardapio">
+            <input type="submit" value="Adicionar um novo cardapio">
+        </form>
     </div>
     </section>
     </body>
