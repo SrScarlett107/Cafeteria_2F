@@ -16,6 +16,7 @@ public class Cardapio {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
     private String nome;
+    private String foto;
 	private String descricao;
 	private double valor;
 	private LocalDate dataDoCadastro;
@@ -62,5 +63,11 @@ public class Cardapio {
 	}
 	public void setCodStatusCardapio(boolean codStatusCardapio) {
 		this.codStatusCardapio = codStatusCardapio;
+	}
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 }
