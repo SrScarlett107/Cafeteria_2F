@@ -90,6 +90,15 @@ form textarea{
 <p>
     <input type="number" th:field="*{valor}" id="valor" name="media" placeholder="média*" required pattern="[0-9]+$" maxlength="6px">
 </p>
+<strong>Adicione a Imagem</strong>
+<p>
+    <input class="form-control" type="file" id="uploadImage" onchange="preViewImg();" name="file" accept="image/*" />
+</p>
+<br>
+<strong>Imagem Escolhida:</strong>
+<p>
+  	<img id="preView" alt="..." class="rounded mx-auto d-block img-fluid"/>
+</p>
 <br>
 <br>
 

@@ -1,6 +1,9 @@
 package com.Cafeteria.INF2FM.myproject2f.controller;
 
 
+import java.io.IOException;
+import java.util.Base64;
+
 //import java.io.IOException;
 //import java.util.ArrayList;
 //import java.util.Arrays;
@@ -32,6 +35,8 @@ public class CardapioController {
 	@Autowired
 	private CardapioRepository cardapioRepository;
 	
+private String foto = "";
+
 @GetMapping("/todos-cardapios")
 public String todos(Model model){
 	model.addAttribute("Cardapios", cardapioRepository.findAll());
@@ -65,7 +70,10 @@ public String todos(Model model){
 	public String showUpdateForm(@PathVariable("id") long id, ModelMap model) {
 		Cardapio cardapio = cardapioRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid card Id:" + id));
-	
+
+				if (cardapio.getFoto() != null) {
+					foto = Base64.getEncoder().encodeToString(cardapio.getFoto());
+				}
 
 		model.addAttribute("cardapio", cardapio);
 		return "editar-card";
@@ -73,6 +81,7 @@ public String todos(Model model){
 	
 	
 
+@SuppressWarnings("null")
 @PostMapping("/update/{id}")
 	public String atualizarCard(
 			@RequestParam(value = "file", required = false) MultipartFile file, @PathVariable("id") Long id, 
@@ -82,7 +91,15 @@ public String todos(Model model){
 			cardapio.setId(id);
 			return "editar-card";
 		}
-		
+		if (file != null && !file.getOriginalFilename().isEmpty()) {
+			try {
+				cardapio.setFoto(file.getBytes());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			cardapio.setFoto(null);
+		}
 	
 		cardapioRepository.save(cardapio);
 		return "redirect:/coffeteria/cardapio/todos-cardapios";
