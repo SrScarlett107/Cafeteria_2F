@@ -80,19 +80,19 @@ form textarea{
 
             <h1>CAFETERIA  </h1>
             <br>
-<strong>Nome do Cardápio:</strong><input type="text" th:field="*{nome}" id="nome" required placeholder="Nome do Cardápio aqui*" maxlength="30px" pattern="[A-z\s]+$"> 
+<strong>Nome do Produto:</strong><input type="text" th:field="*{nome}" id="nome" required placeholder="Nome do Cardápio aqui*" maxlength="30px" pattern="[A-z\s]+$"> 
 <br>
 <br>
-<strong>Descrição do Cardápio:</strong>
+<strong>Descrição do Produto:</strong>
 <textarea name="message" th:field="*{descricao}" id="descricao" cols="30" rows="10" maxlength="500" placeholder="Descrição do Cardápio*" required pattern="[A-z\s]+$"></textarea>
 <br>
-<strong>Valor em média:</strong>
+<strong>Valor:</strong>
 <p>
     <input type="number" th:field="*{valor}" id="valor" name="media" placeholder="média*" required pattern="[0-9]+$" maxlength="6px">
 </p>
 <strong>Adicione a Imagem</strong>
 <p>
-    <input class="form-control" type="file" id="uploadImage" onchange="preViewImg();" name="file" accept="image/*" />
+    <input class="form-control" th:field="*{foto}" type="file" id="uploadImage" onchange="preViewImg();" name="file" accept="image/*" />
 </p>
 <br>
 <strong>Imagem Escolhida:</strong>
