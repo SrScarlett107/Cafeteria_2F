@@ -78,6 +78,12 @@ public String todos(Model model){
 		model.addAttribute("cardapio", cardapio);
 		return "editar-card";
 	}
+
+	@GetMapping("/usuario-cardapio")
+	public String showCardapio(Model model, Cardapio cardapio) {
+		return "cardapio";
+	}
+	
 	
 	
 

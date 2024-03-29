@@ -84,6 +84,8 @@ form textarea{
         <table>
             <thead>
                 <tr>
+                    <th>Imagem</th>
+                    <th></th>
                     <th>ID</th>
              <th></th>
                     <th>Nome</th>
@@ -98,7 +100,8 @@ form textarea{
             </thead>
             <tbody>
                 <tr th:each="cardapio: ${Cardapios}">
-                
+                <td img th:src="${cardapio.foto}"></td>
+                <td></td>
                     <td th:text="${cardapio.id}"></td>
                 <td></td>
                     <td th:text="${cardapio.nome}"></td>
