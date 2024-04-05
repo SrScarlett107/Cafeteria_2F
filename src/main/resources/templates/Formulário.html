@@ -1,4 +1,4 @@
- <html>
+ <!DOCTYPE html>
     <head>
         <title>Formulário</title>
         <meta charset="UTF-8">
@@ -14,7 +14,9 @@ body{
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: rgb(151, 85, 35);
+    background-image: url(/imagens/fundo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 section{
@@ -75,6 +77,7 @@ form textarea{
     
 </head>
     <body>
+        <div>
         <section>
         <form th:action="@{/coffeteria/cardapio/add-card}" th:object="${cardapio}" method="post">
 
@@ -108,5 +111,6 @@ form textarea{
             <input type="submit" value="Voltar à cardapios">
         </form>
     </section>
+</div>
     </body>
 </html>
