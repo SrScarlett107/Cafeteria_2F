@@ -3,6 +3,7 @@ package com.Cafeteria.INF2FM.myproject2f.controller;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.List;
 
 //import java.io.IOException;
 //import java.util.ArrayList;
@@ -81,6 +82,9 @@ public String todos(Model model){
 
 	@GetMapping("/usuario-cardapio")
 	public String showCardapio(Model model, Cardapio cardapio) {
+
+		public List<Cardapio> getCardapio() {
+			return CardapioRepository.findAll();
 		return "cardapio";
 	}
 	

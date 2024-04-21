@@ -66,6 +66,24 @@ form textarea{
         <section>
         <div>
         <h2 >Cardapio</h2>
+        <h1>Cardápio</h1>
+        <ul id="cardapio-list"></ul>
+    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    url: "/api/cardapio",
+                    type: "GET",
+                    success: function(data) {
+                        var cardapioList = $("#cardapio-list");
+                        $.each(data, function(index, item) {
+                            cardapioList.append("<li><strong>" + item.nome + "</strong>: " + item.descricao + " - R$ " + item.preco + "</li>");
+                        });
+                    }
+                });
+            });
+        </script>
 
           <form action="novo-cardapio">
             <input type="submit" value="Adicionar um novo cardapio">
