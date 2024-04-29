@@ -1,6 +1,5 @@
 package com.Cafeteria.INF2FM.myproject2f.controller;
 
-
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
@@ -13,6 +12,8 @@ import java.util.List;
 //import javax.naming.Binding;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -29,73 +30,68 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Cafeteria.INF2FM.myproject2f.model.Cardapio;
 import com.Cafeteria.INF2FM.myproject2f.repository.CardapioRepository;
+import com.Cafeteria.INF2FM.service.CardapioService;
 
 @Controller
 @RequestMapping("/coffeteria/cardapio")
 public class CardapioController {
 	@Autowired
 	private CardapioRepository cardapioRepository;
-	
-private String foto = "";
 
-@GetMapping("/todos-cardapios")
-public String todos(Model model){
-	model.addAttribute("Cardapios", cardapioRepository.findAll());
+	private String foto = "";
 
-	
-	return "Cardapios";
-}
+	@GetMapping("/todos-cardapios")
+	public String todos(Model model) {
+		model.addAttribute("Cardapios", cardapioRepository.findAll());
+
+		return "Cardapios";
+	}
 
 	@GetMapping("/novo-cardapio")
 	public String novoCardapio(Model model, Cardapio cardapio) {
-		
+
 		model.addAttribute("cardapio", cardapio);
 		return "Formulário";
 	}
-	
-	//add cardapio no banco de dados
+
+	// add cardapio no banco de dados
 	@PostMapping("/add-card")
 	String addCardapio(Model model, Cardapio cardapio, BindingResult result) {
-		if (result.hasErrors()){
+		if (result.hasErrors()) {
 			return "Formulário";
 		}
 		cardapio.setCodStatusCardapio(true);
-		
+
 		Cardapio cardapioDb = cardapioRepository.save(cardapio);
-		
-	
+
 		return "redirect:/coffeteria/cardapio/sucesso-cardapio";
 	}
-	
+
 	@GetMapping("/editar-card/{id}")
 	public String showUpdateForm(@PathVariable("id") long id, ModelMap model) {
 		Cardapio cardapio = cardapioRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid card Id:" + id));
 
-				if (cardapio.getFoto() != null) {
-					foto = Base64.getEncoder().encodeToString(cardapio.getFoto());
-				}
+		if (cardapio.getFoto() != null) {
+			foto = Base64.getEncoder().encodeToString(cardapio.getFoto());
+		}
 
 		model.addAttribute("cardapio", cardapio);
 		return "editar-card";
 	}
 
+
+	private CardapioService cardapioService;
 	@GetMapping("/usuario-cardapio")
-	public String showCardapio(Model model, Cardapio cardapio) {
-
-		public List<Cardapio> getCardapio() {
-			return CardapioRepository.findAll();
-		return "cardapio";
+	public ResponseEntity<List<Cardapio>> findAll() {
+		List<Cardapio> cardapios = cardapioService.findAll();
+		return new ResponseEntity<List<Cardapio>>(cardapios, HttpStatus.OK);
 	}
-	
-	
-	
 
-@SuppressWarnings("null")
-@PostMapping("/update/{id}")
-	public String atualizarCard(
-			@RequestParam(value = "file", required = false) MultipartFile file, @PathVariable("id") Long id, 
-			@ModelAttribute("cardapio") Cardapio cardapio, BindingResult result) {
+	@SuppressWarnings("null")
+	@PostMapping("/update/{id}")
+	public String atualizarCard(@RequestParam(value = "file", required = false) MultipartFile file,
+			@PathVariable("id") Long id, @ModelAttribute("cardapio") Cardapio cardapio, BindingResult result) {
 
 		if (result.hasErrors()) {
 			cardapio.setId(id);
@@ -110,7 +106,7 @@ public String todos(Model model){
 		} else {
 			cardapio.setFoto(null);
 		}
-	
+
 		cardapioRepository.save(cardapio);
 		return "redirect:/coffeteria/cardapio/todos-cardapios";
 	}
@@ -123,17 +119,11 @@ public String todos(Model model){
 		return "redirect:/";
 	}
 
-	
-
-
-	//abrir pagina de sucesso do cadastro
+	// abrir pagina de sucesso do cadastro
 	@GetMapping("/sucesso-cardapio")
 	String showPageSucessCardapio() {
-		
+
 		return "pagina-sucesso";
 	}
-	
-		
-	
 
 }

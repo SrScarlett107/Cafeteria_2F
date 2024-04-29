@@ -75,7 +75,7 @@ form textarea{
         <script>
             $(document).ready(function() {
                 $.ajax({
-                    url: "/api/cardapio",
+                    url: "/coffeteria/cardapio/usuario-cardapio",
                     type: "GET",
                     success: function(data) {
                         var cardapioList = $("#cardapio-list");
@@ -86,10 +86,6 @@ form textarea{
                 });
             });
         </script>
-
-          <form action="novo-cardapio">
-            <input type="submit" value="Adicionar um novo cardapio">
-        </form>
     </div>
     </section>
     </body>
