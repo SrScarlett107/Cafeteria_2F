@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "cardapios")
@@ -21,6 +22,9 @@ public class Cardapio {
 	private double valor;
 	private LocalDate dataDoCadastro;
 	private boolean codStatusCardapio;
+	@Transient
+	private String fotoBase64;
+
 	
 
 	
@@ -69,5 +73,11 @@ public class Cardapio {
 	}
 	public void setFoto(byte[] foto) {
 		this.foto = foto;
+	}
+	public String getFotoBase64() {
+		return fotoBase64;
+	}
+	public void setFotoBase64(String fotoBase64) {
+		this.fotoBase64 = fotoBase64;
 	}
 }

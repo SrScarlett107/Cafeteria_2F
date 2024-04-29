@@ -65,28 +65,16 @@ form textarea{
     
 </head>
     <body>
-        <section>
-        <div>
-        <h2 >Cardapio</h2>
-        <h1>Cardápio</h1>
-        <ul id="cardapio-list"></ul>
-    
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $.ajax({
-                    url: "/coffeteria/cardapio/usuario-cardapio",
-                    type: "GET",
-                    success: function(data) {
-                        var cardapioList = $("#cardapio-list");
-                        $.each(data, function(index, item) {
-                            cardapioList.append("<li><strong>" + item.nome + "</strong>: " + item.descricao + " - R$ " + item.preco + "</li>");
-                        });
-                    }
-                });
-            });
-        </script>
-    </div>
-    </section>
+        <h1>Cardapio</h1>
+        <div th:each="cardapio: ${Cardapios}">
+            <div>
+                <h2 th:text="${cardapio.nome}"></h2>
+                <img th:src="@{${cardapio.foto}}" >
+                <p th:text="${cardapio.descricao}"></p>
+                <p th:text=" 'Preço: R$ ' + ${cardapio.valor}"></p>
+                <button type="button">Adicionar ao carrinho</button>
+            </div>
+        </div>
+
     </body>
 </html>

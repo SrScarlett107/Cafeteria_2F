@@ -31,7 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.Cafeteria.INF2FM.myproject2f.model.Cardapio;
 import com.Cafeteria.INF2FM.myproject2f.repository.CardapioRepository;
 import com.Cafeteria.INF2FM.service.CardapioService;
-
+import java.util.Base64;
 @Controller
 @RequestMapping("/coffeteria/cardapio")
 public class CardapioController {
@@ -81,11 +81,12 @@ public class CardapioController {
 	}
 
 
-	private CardapioService cardapioService;
+
 	@GetMapping("/usuario-cardapio")
-	public ResponseEntity<List<Cardapio>> findAll() {
-		List<Cardapio> cardapios = cardapioService.findAll();
-		return new ResponseEntity<List<Cardapio>>(cardapios, HttpStatus.OK);
+	public String todosUsuario(Model model) {
+		model.addAttribute("Cardapios", cardapioRepository.findAll());
+
+		return "cardapio";
 	}
 
 	@SuppressWarnings("null")
@@ -97,15 +98,7 @@ public class CardapioController {
 			cardapio.setId(id);
 			return "editar-card";
 		}
-		if (file != null && !file.getOriginalFilename().isEmpty()) {
-			try {
-				cardapio.setFoto(file.getBytes());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} else {
-			cardapio.setFoto(null);
-		}
+		
 
 		cardapioRepository.save(cardapio);
 		return "redirect:/coffeteria/cardapio/todos-cardapios";
