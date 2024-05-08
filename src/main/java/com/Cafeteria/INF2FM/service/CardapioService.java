@@ -12,7 +12,6 @@ public class CardapioService {
 		private CardapioRepository cardapioRepository;
 
 		public CardapioService(CardapioRepository cardapioRepository) {
-			super();
 			this.cardapioRepository = cardapioRepository;
 		}
 
@@ -20,4 +19,9 @@ public class CardapioService {
 			List<Cardapio> cardapios = cardapioRepository.findAll();
 			return cardapios;
 		}
+
+		public Cardapio findById(long id) {
+			return cardapioRepository.findById(id).get();
+		}
+		
 }

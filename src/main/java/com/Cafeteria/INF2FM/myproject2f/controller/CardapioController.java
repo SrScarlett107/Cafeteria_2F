@@ -3,6 +3,10 @@ package com.Cafeteria.INF2FM.myproject2f.controller;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 
 //import java.io.IOException;
 //import java.util.ArrayList;
@@ -25,6 +29,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -85,7 +90,6 @@ public class CardapioController {
 	@GetMapping("/usuario-cardapio")
 	public String todosUsuario(Model model) {
 		model.addAttribute("Cardapios", cardapioRepository.findAll());
-
 		return "cardapio";
 	}
 
