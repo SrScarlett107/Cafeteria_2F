@@ -1,4 +1,4 @@
-package com.Cafeteria.INF2FM.config;
+package com.Cafeteria.INF2FM.myproject2f.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;

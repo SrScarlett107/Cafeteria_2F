@@ -1,4 +1,4 @@
-package com.Cafeteria.INF2FM.service;
+package com.Cafeteria.INF2FM.myproject2f.service;
 
 import java.util.List;
 
@@ -20,8 +20,9 @@ public class CardapioService {
 			return cardapios;
 		}
 
-		public Cardapio findById(long id) {
+		public Cardapio findById(Long id) {
 			return cardapioRepository.findById(id).get();
 		}
+		
 		
 }

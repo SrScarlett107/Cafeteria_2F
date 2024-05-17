@@ -1,20 +1,16 @@
 package com.Cafeteria.INF2FM.myproject2f.controller;
-
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
-
-//import java.io.IOException;
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.EnumSet;
-//import java.util.List;
-//import javax.naming.Binding;
-
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.List;
+import javax.naming.Binding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,22 +22,31 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.Cafeteria.INF2FM.myproject2f.model.Cardapio;
 import com.Cafeteria.INF2FM.myproject2f.repository.CardapioRepository;
-import com.Cafeteria.INF2FM.service.CardapioService;
+import com.Cafeteria.INF2FM.myproject2f.service.CardapioService;
+
 import java.util.Base64;
+
 @Controller
 @RequestMapping("/coffeteria/cardapio")
 public class CardapioController {
 	@Autowired
 	private CardapioRepository cardapioRepository;
+
+	private CardapioService cardapioService;
+		
+	public CardapioController(CardapioService cardapioService) {
+		super();
+		this.cardapioService = cardapioService;
+	}
+
 
 	private String foto = "";
 
@@ -85,8 +90,6 @@ public class CardapioController {
 		return "editar-card";
 	}
 
-
-
 	@GetMapping("/usuario-cardapio")
 	public String todosUsuario(Model model) {
 		model.addAttribute("Cardapios", cardapioRepository.findAll());
@@ -102,7 +105,6 @@ public class CardapioController {
 			cardapio.setId(id);
 			return "editar-card";
 		}
-		
 
 		cardapioRepository.save(cardapio);
 		return "redirect:/coffeteria/cardapio/todos-cardapios";
@@ -121,6 +123,23 @@ public class CardapioController {
 	String showPageSucessCardapio() {
 
 		return "pagina-sucesso";
+	}
+	
+
+	@GetMapping("/showImage/{id}")
+	@ResponseBody
+	public void showImage(@PathVariable("id") Long id, HttpServletResponse response, Cardapio cardapio)
+			throws ServletException, IOException {
+
+		cardapio = cardapioService.findById(id);
+
+		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+		if (cardapio.getFoto() != null) {
+			response.getOutputStream().write(cardapio.getFoto());
+		} else {
+			response.getOutputStream().write(null);
+		}
+		
 	}
 
 }
