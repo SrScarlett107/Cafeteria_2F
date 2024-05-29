@@ -1,116 +1,131 @@
- <!DOCTYPE html>
-    <head>
-        <title>Formulário</title>
-        <meta charset="UTF-8">
-        <style>
-        *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
 
-body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-image: url(/imagens/fundo.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-section{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 10px 45px;
-    background-color: rgb(212, 162, 121);
-    width: 500px;
-    border: 5px solid black;
-    
-}
-section form{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    color: aliceblue;
-}
-form input{
-    padding: 15px;
-    outline: none;
-    border: 0;
-    margin-bottom: 20px;
-    font-size: 15px;
-    border-radius: 15px;
-    background-color: rgb(255, 255, 255);
-}
-form button{
-    padding: 15px;
-    cursor: pointer;
-    font-size: 16px;
-    background: transparent;
-    border: 2px solid rgb(0, 0, 0);
-    margin-bottom: 20px;
-}
-form button:hover{
+<head>
+	<title>Formulário</title>
+	<meta charset="UTF-8">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
 
-    background-color: rgb(209, 209, 209);
-}
-.link{
-    padding: 15px;
-    cursor: pointer;
-    font-size: 16px;
-    background: transparent;
-    border: 2px solid rgb(0, 0, 0);
-    margin-bottom: 20px;
-    text-align: center;
-}
+		body {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 100vh;
+			background-image: url(/imagens/fundo.png);
+			background-size: cover;
+			background-repeat: no-repeat;
+			font-family: Georgia, 'Times New Roman', Times, serif;
+		}
 
-form textarea{
-     border-radius: 10px;
-     background-color: rgb(255, 255, 255);
-     font-family:Arial, Helvetica, sans-serif;
-}
-</style>
-  
-    
+		section {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			padding: 10px 45px;
+			background-color: rgb(212, 162, 121);
+			width: 500px;
+			border: 5px solid black;
+
+		}
+
+		section form {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			color: aliceblue;
+		}
+
+		form input {
+			padding: 15px;
+			outline: none;
+			border: 0;
+			margin-bottom: 20px;
+			font-size: 15px;
+			border-radius: 15px;
+			background-color: rgb(255, 255, 255);
+		}
+
+		form button {
+			padding: 15px;
+			cursor: pointer;
+			font-size: 16px;
+			background: transparent;
+			border: 2px solid rgb(0, 0, 0);
+			margin-bottom: 20px;
+		}
+
+		form button:hover {
+
+			background-color: rgb(209, 209, 209);
+		}
+
+		.link {
+			padding: 15px;
+			cursor: pointer;
+			font-size: 16px;
+			background: transparent;
+			border: 2px solid rgb(0, 0, 0);
+			margin-bottom: 20px;
+			text-align: center;
+		}
+
+		form textarea {
+			border-radius: 10px;
+			background-color: rgb(255, 255, 255);
+			font-family: Arial, Helvetica, sans-serif;
+		}
+	</style>
+
+
 </head>
-    <body>
-        <div>
-        <section>
-        <form th:action="@{/coffeteria/cardapio/add-card}" th:object="${cardapio}" method="post">
 
-            <h1>CAFETERIA  </h1>
-            <br>
-<strong>Nome do Produto:</strong><input type="text" th:field="*{nome}" id="nome" required placeholder="Nome do Cardápio aqui*" maxlength="30px" pattern="[A-z\s]+$"> 
-<br>
-<br>
-<strong>Descrição do Produto:</strong>
-<textarea name="message" th:field="*{descricao}" id="descricao" cols="30" rows="10" maxlength="500" placeholder="Descrição do Cardápio*" required pattern="[A-z\s]+$"></textarea>
-<br>
-<strong>Valor:</strong>
-<p>
-    <input type="number" th:field="*{valor}" id="valor" name="media" placeholder="média*" required pattern="[0-9]+$" maxlength="6px">
-</p>
-<strong>Adicione a Imagem</strong>
-<p>
-    <input class="form-control" th:field="*{foto}" type="file" id="uploadImage" onchange="preViewImg();" name="file" accept="image/*" />
-</p>
-<br>
-<strong>Imagem Escolhida:</strong>
-<p>
-  	<img id="preView" alt="..." class="rounded mx-auto d-block img-fluid"/>
-</p>
-<br>
-<br>
+<body>
+	<div>
+		<section>
+			<form th:action="@{/coffeteria/cardapio/salvar}" th:object="${cardapio}" method="post" enctype="multipart/form-data" >
 
-<button type="submit">ENVIAR</button>
-       </form>
-       <form action="todos-cardapios">
-            <input type="submit" value="Voltar à cardapios">
-        </form>
-    </section>
-</div>
-    </body>
+				<h1>CAFETERIA </h1>
+				<br>
+				<strong>Nome do Produto:</strong><input type="text" th:field="*{nome}" id="nome" required
+					placeholder="Nome do Cardápio aqui*" maxlength="30px" pattern="[A-z\s]+$">
+				<br>
+				<br>
+				<strong>Descrição do Produto:</strong>
+				<textarea name="message" th:field="*{descricao}" id="descricao" cols="30" rows="10" maxlength="500"
+					placeholder="Descrição do Cardápio*" required pattern="[A-z\s]+$"></textarea>
+				<br>
+				<strong>Valor:</strong>
+				<p>
+					<input type="number" th:field="*{valor}" id="valor" name="media" placeholder="média*" required
+						pattern="[0-9]+$" maxlength="6px">
+				</p>
+				<strong>Adicione a Imagem</strong>
+				<p>
+					<input class="form-control" 
+					name="file" type="file" id="uploadImage" onchange="preViewImg();" accept="image/*" />
+				</p>
+				<br>
+				<strong>Imagem Escolhida:</strong>
+				<p>
+					<img id="preView" alt="..." th:src="*{foto} ? @{${'/coffeteria/cardapio/showImage/'+ cardapio.id}} : ${noImage}"
+					class="rounded d-block  mx-auto img-fluid" />
+				</p>
+				<br>
+				<br>
+
+				<button type="submit">ENVIAR</button>
+			</form>
+			<form action="todos-cardapios">
+				<input type="submit" value="Voltar à cardapios">
+			</form>
+		</section>
+	</div>
+	<script src="/js/scripts.js"></script>
+</body>
+
 </html>

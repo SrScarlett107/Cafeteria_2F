@@ -76,6 +76,26 @@ public class CardapioController {
 
 		return "redirect:/coffeteria/cardapio/sucesso-cardapio";
 	}
+	
+	@PostMapping("/salvar")
+	public String salvar(
+			@RequestParam(value = "file", required = false) MultipartFile file,
+			@ModelAttribute("cardapio") Cardapio cardapio, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "Formulário";
+		}
+		cardapio.setCodStatusCardapio(true);
+		try {
+			cardapio.setFoto(file.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		cardapioRepository.save(cardapio);
+
+		return "redirect:/coffeteria/cardapio/sucesso-cardapio";
+	}
 
 	@GetMapping("/editar-card/{id}")
 	public String showUpdateForm(@PathVariable("id") long id, ModelMap model) {
@@ -92,7 +112,8 @@ public class CardapioController {
 
 	@GetMapping("/usuario-cardapio")
 	public String todosUsuario(Model model) {
-		model.addAttribute("Cardapios", cardapioRepository.findAll());
+		List<Cardapio> cardapios = cardapioService.findAll();
+		model.addAttribute("Cardapios", cardapios);
 		return "cardapio";
 	}
 
@@ -125,7 +146,6 @@ public class CardapioController {
 		return "pagina-sucesso";
 	}
 	
-
 	@GetMapping("/showImage/{id}")
 	@ResponseBody
 	public void showImage(@PathVariable("id") Long id, HttpServletResponse response, Cardapio cardapio)

@@ -67,7 +67,7 @@ form textarea{
         <div th:each="cardapio: ${Cardapios}">
             <div>
                 <h2 th:text="${cardapio.nome}"></h2>
-                <img th:src="@{/coffeteria/cardapio/showImage/{id}(id=${cardapio.id})}" >
+                <img th:src="${cardapio.foto} ? @{${'coffeteria/cardapio/showImage/'+ cardapio.id}}" width="150vw" alt="...">
                 <p th:text="${cardapio.descricao}"></p>
                 <p th:text=" 'Preço: R$ ' + ${cardapio.valor}"></p>
                 <button type="button">Adicionar ao carrinho</button>
