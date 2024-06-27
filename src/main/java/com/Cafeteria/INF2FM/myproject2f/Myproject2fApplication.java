@@ -2,7 +2,7 @@ package com.Cafeteria.INF2FM.myproject2f;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+
 
 @SpringBootApplication
 
