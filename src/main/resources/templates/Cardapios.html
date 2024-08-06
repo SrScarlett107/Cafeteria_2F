@@ -102,7 +102,7 @@ form textarea{
             </thead>
             <tbody>
                 <tr th:each="cardapio: ${Cardapios}">
-                 <td><img th:src="${cardapio.foto}"></td>
+                 <td><img th:src="${cardapio.foto} ? @{${'/coffeteria/cardapio/showImage/'+ cardapio.id}} : ${noImage}" width="150vw" alt="..."></td>
                 <td></td>
                     <td th:text="${cardapio.id}"></td>
                 <td></td>

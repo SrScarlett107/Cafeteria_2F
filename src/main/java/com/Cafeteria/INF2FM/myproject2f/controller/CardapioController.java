@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -103,6 +105,8 @@ public class CardapioController {
 	public String todosUsuario(Model model) {
 		List<Cardapio> cardapios = cardapioService.findAll();
 		model.addAttribute("Cardapios", cardapios);
+		
+		System.out.println(cardapios.get(0).getFoto());
 		return "cardapio";
 	}
 
@@ -141,13 +145,18 @@ public class CardapioController {
 
 		cardapio = cardapioService.findById(id);
 
+	
+		
 		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
 		if (cardapio.getFoto() != null) {
 			response.getOutputStream().write(cardapio.getFoto());
 		} else {
 			response.getOutputStream().write(null);
 		}
-		
+		response.getOutputStream().close();
 	}
+
+
+	
 
 }

@@ -92,7 +92,7 @@
 				<h1>CAFETERIA </h1>
 				<br>
 				<strong>Nome do Produto:</strong><input type="text" th:field="*{nome}" id="nome" required
-					placeholder="Nome do Cardápio aqui*" maxlength="30px" pattern="[A-z\s]+$">
+					placeholder="Nome do Cardápio aqui*" maxlength="30px" pattern="[A-Za-zÀ-ú0-9., -]+$">
 				<br>
 				<br>
 				<strong>Descrição do Produto:</strong>
@@ -113,7 +113,7 @@
 				<strong>Imagem Escolhida:</strong>
 				<p>
 					<img id="preView" alt="..." th:src="*{foto} ? @{${'/coffeteria/cardapio/showImage/'+ cardapio.id}} : ${noImage}"
-					class="rounded d-block  mx-auto img-fluid" />
+					class="rounded d-block  mx-auto img-fluid" width="150vw" />
 				</p>
 				<br>
 				<br>

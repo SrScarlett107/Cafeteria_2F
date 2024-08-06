@@ -23,6 +23,6 @@ public class CardapioService {
 		public Cardapio findById(Long id) {
 			return cardapioRepository.findById(id).get();
 		}
-		
+
 		
 }
