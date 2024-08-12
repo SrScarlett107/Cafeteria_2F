@@ -40,6 +40,11 @@ public class CardapioController {
 
 
 	private String foto = "";
+	
+	@GetMapping("/Inicio")
+	public String inicio(Model model) {
+		return "Index";
+	}
 
 	@GetMapping("/todos-cardapios")
 	public String todos(Model model) {
@@ -118,6 +123,10 @@ public class CardapioController {
 			cardapio.setId(id);
 			return "editar-card";
 		}
+byte[] _foto = Base64.getDecoder().decode(foto);
+		
+		
+		foto = "";
 
 		cardapioRepository.save(cardapio);
 		return "redirect:/coffeteria/cardapio/todos-cardapios";
