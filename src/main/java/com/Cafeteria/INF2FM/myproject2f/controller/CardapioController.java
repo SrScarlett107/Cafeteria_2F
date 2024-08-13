@@ -41,7 +41,7 @@ public class CardapioController {
 
 	private String foto = "";
 	
-	@GetMapping("/Inicio")
+	@GetMapping("/inicio")
 	public String inicio(Model model) {
 		return "Index";
 	}
