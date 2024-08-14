@@ -1,64 +1,3 @@
-<html>
-    <head>
-        <title>Formulário</title>
-        <meta charset="UTF-8">
-          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-      <link rel="styledheet" href="/src/main/resources/static/CSS/style.css">
-        <style>
-        *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body{
-    background-image: url(/imagens/fundo.png);
-    background-size: cover;
-}
-section form{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    color: aliceblue;
-}
-form input{
-    padding: 15px;
-    outline: none;
-    border: 0;
-    margin-bottom: 20px;
-    font-size: 15px;
-    border-radius: 15px;
-    background-color: rgb(238, 156, 147);
-}
-form button{
-    padding: 15px;
-    cursor: pointer;
-    font-size: 16px;
-    background: transparent;
-    border: 2px solid rgb(0, 0, 0);
-    margin-bottom: 20px;
-}
-form button:hover{
-
-    background-color: rgb(209, 209, 209);
-}
-.link{
-    padding: 15px;
-    cursor: pointer;
-    font-size: 16px;
-    background: transparent;
-    border: 2px solid rgb(0, 0, 0);
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-form textarea{
-     border-radius: 10px;
-     background-color: rgb(238, 156, 147);
-     font-family:Arial, Helvetica, sans-serif;
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&family=Raleway:wght@400;500;600;700;800&display=swap');
 *{
   margin:0;
@@ -70,17 +9,13 @@ h2{
   font-size:4rem;
 }
 #container{
-  
- 
-  
+  height:100vh;
+  width:100vw;
+  background-color:#F2EBDD;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
-.teste{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-
-
 .card{
   margin:0 30px;
   height:500px;
@@ -112,7 +47,7 @@ h2{
 }
 
 #hulk h2{
-  color:#DD9442;
+  color:#59C887;
   letter-spacing:-5px; 
   line-height: 50px;
   text-align:center;
@@ -272,34 +207,3 @@ h2{
   font-weight:600;
   color:#fff;
 }
-</style>
-  
-    
-</head>
-    <body class="teste">
-        <h1>Cardapio</h1>
-        <div  th:each="cardapio: ${Cardapios}">
-            <div id="container">
-            <div class="card" id="hulk">
-             <img th:src="${cardapio.foto} ? @{${'/coffeteria/cardapio/showImage/'+ cardapio.id}} : ${noImage}" width="100%" alt="...">
-                <div class="card-text">
-                <h2 th:text="${cardapio.nome}"></h2>
-                <p th:text="${cardapio.descricao}"></p>
-               
-                <div>
-      <div>
-        <span th:text=" 'R$' + ${cardapio.valor}"></span>
-      
-        </div>
-        <div>
-        <span>S</span>
-                </div>
-    </div>
-    <button type="button">Adicionar ao carrinho</button>
-                </div>
-                </div>
-            </div>
-        </div>
-              <br />
-    </body>
-</html>
