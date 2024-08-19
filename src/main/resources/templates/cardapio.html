@@ -2,7 +2,7 @@
     <head>
         <title>Formulário</title>
         <meta charset="UTF-8">
-          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
       <link rel="styledheet" href="/src/main/resources/static/CSS/style.css">
         <style>
@@ -22,15 +22,8 @@ section form{
     width: 100%;
     color: aliceblue;
 }
-form input{
-    padding: 15px;
-    outline: none;
-    border: 0;
-    margin-bottom: 20px;
-    font-size: 15px;
-    border-radius: 15px;
-    background-color: rgb(238, 156, 147);
-}
+
+
 form button{
     padding: 15px;
     cursor: pointer;
@@ -53,11 +46,7 @@ form button:hover{
     text-align: center;
 }
 
-form textarea{
-     border-radius: 10px;
-     background-color: rgb(238, 156, 147);
-     font-family:Arial, Helvetica, sans-serif;
-}
+
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&family=Raleway:wght@400;500;600;700;800&display=swap');
 *{
@@ -76,7 +65,7 @@ h2{
 }
 .teste{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 
@@ -276,8 +265,9 @@ h2{
   
     
 </head>
-    <body class="teste">
+    <body>
         <h1>Cardapio</h1>
+        <div class="teste">
         <div  th:each="cardapio: ${Cardapios}">
             <div id="container">
             <div class="card" id="hulk">
@@ -295,11 +285,16 @@ h2{
         <span>S</span>
                 </div>
     </div>
-    <button type="button">Adicionar ao carrinho</button>
+    <form action="/coffeteria/cardapio/adicionar-pedido" method="post">
+    <input type="number" name="quantidade" min="1" required/>
+                        <input type="hidden" name="cardapioId" th:value="${cardapio.id}"/>
+    <button type="submit">Adicionar ao carrinho</button>
+  </form>
                 </div>
                 </div>
             </div>
         </div>
-              <br />
+           <br />
+              </div>
     </body>
 </html>

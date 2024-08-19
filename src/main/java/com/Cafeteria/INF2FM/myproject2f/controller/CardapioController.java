@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.Cafeteria.INF2FM.myproject2f.model.Cardapio;
+import com.Cafeteria.INF2FM.myproject2f.model.Pedido;
 import com.Cafeteria.INF2FM.myproject2f.repository.CardapioRepository;
+import com.Cafeteria.INF2FM.myproject2f.repository.PedidoRepository;
 import com.Cafeteria.INF2FM.myproject2f.service.CardapioService;
 
 
@@ -37,6 +39,9 @@ public class CardapioController {
 		super();
 		this.cardapioService = cardapioService;
 	}
+	@Autowired
+    private PedidoRepository pedidoRepository;
+
 
 
 	private String foto = "";
@@ -164,6 +169,14 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 		}
 		response.getOutputStream().close();
 	}
+	@PostMapping("/adicionar-pedido")
+    public String adicionarPedido(@RequestParam Long cardapioId, @RequestParam Integer quantidade) {
+        Pedido pedido = new Pedido();
+        pedido.setCardapioId(cardapioId);
+        pedido.setQuantidade(quantidade);
+        pedidoRepository.save(pedido);
+        return "cardapio";
+    }
 
 
 	

@@ -13,6 +13,8 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private double valor;
+	private Long cardapioId;
+    private Integer quantidade;
 	private Long id_pagamento;
 	private Long id_cardapio;
 	private String nomePedido;
@@ -46,5 +48,18 @@ public class Pedido {
 	public void setNomePedido(String nomePedido) {
 		this.nomePedido = nomePedido;
 	}
+	public Long getCardapioId() {
+		return cardapioId;
+	}
+	public void setCardapioId(Long cardapioId) {
+		this.cardapioId = cardapioId;
+	}
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+	
 
 }
