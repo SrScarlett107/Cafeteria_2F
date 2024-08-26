@@ -261,6 +261,19 @@ h2{
   font-weight:600;
   color:#fff;
 }
+
+.flutuante {
+    position: fixed; /* Fixa o elemento na tela */
+    bottom: 20px;    /* Distância da borda inferior */
+    right: 20px;     /* Distância da borda direita */
+    background-color: #cea87c;
+    color: rgb(0, 0, 0);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;   /* Garante que o elemento esteja sobre outros elementos */
+}
+
 </style>
   
     
@@ -288,6 +301,7 @@ h2{
     <form action="/coffeteria/cardapio/adicionar-pedido" method="post">
     <input type="number" name="quantidade" min="1" required/>
                         <input type="hidden" name="cardapioId" th:value="${cardapio.id}"/>
+                        <input type="hidden" name="valor" th:value="${cardapio.valor}                          ">
     <button type="submit">Adicionar ao carrinho</button>
   </form>
                 </div>
@@ -295,6 +309,10 @@ h2{
             </div>
         </div>
            <br />
+              </div>
+              <div class="flutuante" th:each="pedido: ${Pedidos}">
+                <p th:text="${pedido.id_cardapio}"></p>
+
               </div>
     </body>
 </html>

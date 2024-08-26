@@ -170,13 +170,20 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 		response.getOutputStream().close();
 	}
 	@PostMapping("/adicionar-pedido")
-    public String adicionarPedido(@RequestParam Long cardapioId, @RequestParam Integer quantidade) {
+    public String adicionarPedido(@RequestParam Long cardapioId, @RequestParam Integer quantidade, @RequestParam Double valor) {
         Pedido pedido = new Pedido();
-        pedido.setCardapioId(cardapioId);
+        pedido.setId_cardapio(cardapioId);
         pedido.setQuantidade(quantidade);
+        pedido.setValor(valor);
         pedidoRepository.save(pedido);
-        return "cardapio";
+        return "redirect:/coffeteria/cardapio/todos-pedidos";
     }
+	@GetMapping("/todos-pedidos")
+	public String todosPedidos(Model model) {
+		model.addAttribute("Pedidos", pedidoRepository.findAll());
+
+		return "Pedidos";
+	}
 
 
 	
