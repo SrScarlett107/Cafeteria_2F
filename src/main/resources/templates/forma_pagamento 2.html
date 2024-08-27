@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forma de Pagamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: antiquewhite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: rgb(212, 162, 121);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 5px solid black;
+        }
+        .h1 {
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 16px;
+        }
+        .debito {
+            background-color: rgb(151, 90, 43);
+        }
+        .credito {
+            background-color: rgb(151, 90, 43);
+        }
+        .pix {
+            background-color: rgb(151, 90, 43);
+        }
+        .dinheiro {
+            background-color: rgb(151, 90, 43);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <h1>Selecione a forma de pagamento</h1>
+            <select name="pagamento">
+                <option value="debito">Débito</option>
+                <option value="credito">Crédito</option>
+                <option value="dinheiro">Dinheiro</option>
+                <option value="pix">Pix</option>
+            </select>
+        </form>
+    </div>
+</body>
+</html>

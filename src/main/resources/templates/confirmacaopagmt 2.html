@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Pagamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: antiquewhite;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background-color:rgb(212, 162, 121);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 5px solid black;
+        }
+        h1 {
+            color: #000000;
+        }
+        p {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .caixinha {
+            background-color: antiquewhite;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color:rgb(151, 90, 43);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pagamento confirmado!</h1>
+        <p>Seu pagamento foi realizado com sucesso. Confira:</p>
+        <div class="caixinha">
+            <p>CPF: 121.343.565-77</p>
+            <p>Valor total da compra: R$9,00</p>
+        </div>
+        <p>Clique no botão abaixo para emitir a nota fiscal de sua compra.</p>
+        <a href="notafiscal.html" class="button">Emitir nota fiscal</a>
+    </div>
+</body>
+</html>
