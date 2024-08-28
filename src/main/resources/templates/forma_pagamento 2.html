@@ -46,6 +46,15 @@
         .dinheiro {
             background-color: rgb(151, 90, 43);
         }
+        select{
+            background-color: rgb(151, 90, 43);
+            color: aliceblue;
+            border-radius: 10px;
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            font-size: large;
+        }
     </style>
 </head>
 <body>
@@ -53,6 +62,7 @@
         <form>
             <h1>Selecione a forma de pagamento</h1>
             <select name="pagamento">
+                <option value="n/a">Selecione</option>
                 <option value="debito">Débito</option>
                 <option value="credito">Crédito</option>
                 <option value="dinheiro">Dinheiro</option>
