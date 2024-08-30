@@ -55,12 +55,21 @@
             text-align: center;
             font-size: large;
         }
+      form input{
+            padding: 15px;
+			outline: none;
+			border: 0;
+			margin-bottom: 20px;
+			font-size: 15px;
+			border-radius: 15px;
+			background-color: rgb(255, 255, 255);
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <form>
-            <h1>Selecione a forma de pagamento</h1>
+            <h2>Selecione a forma de pagamento</h2>
             <select name="pagamento">
                 <option value="n/a">Selecione</option>
                 <option value="debito">Débito</option>
@@ -68,6 +77,11 @@
                 <option value="dinheiro">Dinheiro</option>
                 <option value="pix">Pix</option>
             </select>
+            <br />
+            <h2>Informe seu CPF</h2>
+            <input type="text" name="cpf"  pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})">
+            <br />
+            <input type="submit" value="Finalizar pagamento">
         </form>
     </div>
 </body>

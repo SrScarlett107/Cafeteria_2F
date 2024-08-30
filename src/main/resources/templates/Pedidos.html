@@ -84,7 +84,6 @@ form textarea{
         <div>
             <div>
                 <a th:href="@{/coffeteria/cardapio/usuario-cardapio}" >
-                      
                         Voltar ao cardapio
                 </a>
 
@@ -102,6 +101,7 @@ form textarea{
                   <th></th>
                     <th>Valor</th>
              <th></th>
+
                 </tr>
             </thead>
             <tbody>
@@ -114,12 +114,14 @@ form textarea{
                     <td th:text="${pedido.quantidade}"></td>
                     <td></td>
                     <td th:text="${pedido.valor}"></td>
-                    <td></td>  
+                    <td></td>
                    </td>
                 </tr>
-               
             </tbody>
         </table>
+        <form action="pagamento">
+            <input type="submit" value="Finalizar pedido">
+        </form>
     </div>
     </section>
     </body>

@@ -60,6 +60,6 @@ public class Pedido {
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
-	
+
 
 }

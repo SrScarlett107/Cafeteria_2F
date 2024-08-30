@@ -181,8 +181,15 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 	@GetMapping("/todos-pedidos")
 	public String todosPedidos(Model model) {
 		model.addAttribute("Pedidos", pedidoRepository.findAll());
+		
 
 		return "Pedidos";
+	}
+	@GetMapping("/pagamento")
+	public String pagamento(Model model) {
+		
+
+		return "pagamento";
 	}
 
 
