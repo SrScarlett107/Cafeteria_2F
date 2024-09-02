@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forma de Pagamento</title>
+    <script>
+        function atualizarAction() {
+            const select = document.getElementById('opcao');
+            const form = document.getElementById('form');
+            const opcaoSelecionada = select.value;
+
+            if (opcaoSelecionada === 'debito') {
+                form.action = 'cartao';  // Endereço Thymeleaf para Página 1
+            } else if (opcaoSelecionada === 'credito') {
+                form.action = 'cartao';  // Endereço Thymeleaf para Página 2
+            } else if (opcaoSelecionada === 'dinheiro') {
+                form.action = 'dinheiro';  // Endereço Thymeleaf para Página 3
+            } 
+            else if (opcaoSelecionada === 'pix') {
+                form.action = 'pix';  // Endereço Thymeleaf para Página 3
+            } 
+            else {
+                form.action = '';  // Endereço padrão ou vazio
+            }
+        }
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -72,9 +93,9 @@
 </head>
 <body>
     <div class="container">
-        <form action="cartao">
+        <form id="form" action="">
             <h2>Selecione a forma de pagamento</h2>
-            <select name="pagamento">
+            <select id="opcao" name="pagamento" onchange="atualizarAction()">
                 <option value="n/a">Selecione</option>
                 <option value="debito">Débito</option>
                 <option value="credito">Crédito</option>

@@ -10,6 +10,9 @@
             text-align: center;
             padding: 50px;
             background-color: antiquewhite;
+            background-image: url(/imagens/Testando.gif);
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         .container {
             background-color: rgb(212, 162, 121);
@@ -25,7 +28,7 @@
         p {
             color: #000000;
         }
-        .button {
+        input {
             display: inline-block;
             padding: 10px 20px;
             margin-top: 20px;
@@ -45,7 +48,9 @@
     <div class="container">
         <h1>Compra finalizada!</h1>
         <p>A Coffeeteria agradece a preferência! Bom apetite e até a próxima!</p>
-        <a href="paginapagamento.html" class="button">Voltar à página inicial</a>
+        <form action="inicio">
+       <input type="submit" value="Voltar para a tela Inicial">
+    </form>
     </div>
 </body>
 </html>

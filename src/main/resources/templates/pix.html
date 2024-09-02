@@ -11,6 +11,8 @@
             color: #333;
             text-align: center;
             padding: 50px;
+            background-image: url(/imagens/Testandoo.gif);
+            background-size: cover;
         }
         .container {
             background-color:rgb(212, 162, 121);
@@ -49,11 +51,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Siga as instruções na maquina</h1>
+        <h1>Escaneie o código abaixo para realizar o pagamento Pix</h1>
+        <img th:src="@{/imagens/Pix.jpeg}">
         <form action="finalizar">
             <input type="submit" value="Finalizar">
         </form>
         </div>
+        
     </div>
 </body>
 </html>
