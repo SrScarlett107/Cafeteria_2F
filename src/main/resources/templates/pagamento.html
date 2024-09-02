@@ -13,6 +13,9 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-image: url(/imagens/Testandooo.gif);
+            background-repeat: no-repeat;
+            background-size:cover;
         }
         .container {
             background-color: rgb(212, 162, 121);
@@ -63,12 +66,13 @@
 			font-size: 15px;
 			border-radius: 15px;
 			background-color: rgb(255, 255, 255);
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <form>
+        <form action="cartao">
             <h2>Selecione a forma de pagamento</h2>
             <select name="pagamento">
                 <option value="n/a">Selecione</option>
@@ -78,8 +82,11 @@
                 <option value="pix">Pix</option>
             </select>
             <br />
-            <h2>Informe seu CPF</h2>
-            <input type="text" name="cpf"  pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})">
+            <h2>Informe seu CPF:</h2>
+            <input type="text" name="cpf"  pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" required>
+            <br />
+            <h2>Cupom:</h2>
+            <input type="text" name="cupom" id="cupom" maxlength="5px">
             <br />
             <input type="submit" value="Finalizar pagamento">
         </form>

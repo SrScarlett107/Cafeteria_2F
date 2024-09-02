@@ -191,8 +191,19 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 
 		return "pagamento";
 	}
+	@GetMapping("/cartao")
+	public String cartao(Model model) {
 
+		return "confirmacaopagmt";
 
+	}
+	@GetMapping("/finalizar")
+	public String finalizar(Model model) {
+
+		return "conclusaocompra";
+		
+
+	}
 	
 
 }
