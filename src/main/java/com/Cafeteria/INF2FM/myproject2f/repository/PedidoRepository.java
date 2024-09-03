@@ -6,5 +6,5 @@ import com.Cafeteria.INF2FM.myproject2f.model.Pedido;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long>{
-
+void deleteAll();
 }

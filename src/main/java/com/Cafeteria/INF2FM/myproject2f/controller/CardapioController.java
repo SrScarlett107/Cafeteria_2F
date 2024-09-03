@@ -211,6 +211,13 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 		
 
 	}
+	@PostMapping("/resetar-pedido")
+    public String resetarPedido() {
+		pedidoRepository.deleteAll();
+
+        
+        return "redirect:/coffeteria/cardapio/inicio";
+    }
 	
 
 }

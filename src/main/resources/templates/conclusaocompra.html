@@ -48,7 +48,7 @@
     <div class="container">
         <h1>Compra finalizada!</h1>
         <p>A Coffeeteria agradece a preferência! Bom apetite e até a próxima!</p>
-        <form action="inicio">
+        <form th:action="@{/coffeteria/cardapio/resetar-pedido}" th:object="${pedido}" method="post">
        <input type="submit" value="Voltar para a tela Inicial">
     </form>
     </div>

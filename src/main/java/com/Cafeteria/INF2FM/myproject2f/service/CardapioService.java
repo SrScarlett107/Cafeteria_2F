@@ -14,7 +14,7 @@ public class CardapioService {
 		public CardapioService(CardapioRepository cardapioRepository) {
 			this.cardapioRepository = cardapioRepository;
 		}
-
+	
 		public List<Cardapio> findAll() {
 			List<Cardapio> cardapios = cardapioRepository.findAll();
 			return cardapios;
