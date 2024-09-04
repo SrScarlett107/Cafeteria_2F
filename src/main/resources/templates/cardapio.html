@@ -31,6 +31,7 @@ form button{
     background: transparent;
     border: 2px solid rgb(0, 0, 0);
     margin-bottom: 20px;
+    font-weight: bolder;
 }
 form button:hover{
 
@@ -271,12 +272,20 @@ h2{
     z-index: 1000;   /* Garante que o elemento esteja sobre outros elementos */
 }
 
+.cardapio{
+  text-align: center;
+  font-style: oblique;
+  font-weight: bolder;
+}
+
 </style>
   
     
 </head>
     <body>
+      <div class="cardapio">
         <h1>Cardapio</h1>
+      </div>
         <div class="teste">
         <div  th:each="cardapio: ${Cardapios}">
             <div id="container">
@@ -298,6 +307,7 @@ h2{
     <form action="/coffeteria/cardapio/adicionar-pedido" method="post">
     <input type="number" name="quantidade" min="1" required/>
                         <input type="hidden" name="cardapioId" th:value="${cardapio.id}"/>
+                        <input type="hidden" name="nomePedido" th:value="${cardapio.nome}">
                         <input type="hidden" name="valor" th:value="${cardapio.valor}                          ">
     <button type="submit">Adicionar ao carrinho</button>
   </form>
@@ -306,10 +316,6 @@ h2{
             </div>
         </div>
            <br />
-              </div>
-              <div class="flutuante" th:each="pedido: ${Pedidos}">
-                <p th:text="${pedido.id_cardapio}"></p>
-
-              </div>
+              </div>      
     </body>
 </html>

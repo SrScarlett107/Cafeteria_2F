@@ -4,6 +4,8 @@ import java.util.Base64;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,7 @@ import com.Cafeteria.INF2FM.myproject2f.model.Pedido;
 import com.Cafeteria.INF2FM.myproject2f.repository.CardapioRepository;
 import com.Cafeteria.INF2FM.myproject2f.repository.PedidoRepository;
 import com.Cafeteria.INF2FM.myproject2f.service.CardapioService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -170,23 +173,35 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 		response.getOutputStream().close();
 	}
 	@PostMapping("/adicionar-pedido")
-    public String adicionarPedido(@RequestParam Long cardapioId, @RequestParam Integer quantidade, @RequestParam Double valor) {
+    public String adicionarPedido(@RequestParam Long cardapioId, @RequestParam Integer quantidade, @RequestParam Double valor, @RequestParam String nomePedido) {
         Pedido pedido = new Pedido();
         pedido.setId_cardapio(cardapioId);
         pedido.setQuantidade(quantidade);
         pedido.setValor(valor);
+		pedido.setNomePedido(nomePedido);
         pedidoRepository.save(pedido);
         return "redirect:/coffeteria/cardapio/todos-pedidos";
     }
 	@GetMapping("/todos-pedidos")
-	public String todosPedidos(Model model) {
+	public String todosPedidos(Model model, RedirectAttributes redirectAttributes, HttpSession session) {
 		model.addAttribute("Pedidos", pedidoRepository.findAll());
-		
+		List<Pedido> pedidos = pedidoRepository.findAll();
+		double totalValor = pedidos.stream().mapToDouble(Pedido::getValor).sum();  // Calcula a soma dos valores
+
+		model.addAttribute("Pedidos", pedidos);
+		model.addAttribute("totalValor", totalValor);  // Passa o total para o modelo
+	
+		 // Adiciona o valor para redirecionamento
+		 redirectAttributes.addFlashAttribute("totalValor", totalValor);
+		 session.setAttribute("totalValor", totalValor); 
 
 		return "Pedidos";
 	}
 	@GetMapping("/pagamento")
-	public String pagamento(Model model) {
+	public String pagamento(Model model, HttpSession session) {
+		Double totalValor = (Double) session.getAttribute("totalValor");
+        model.addAttribute("totalValor", totalValor);
+
 		
 		return "pagamento";
 	}

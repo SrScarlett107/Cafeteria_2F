@@ -1,4 +1,4 @@
- <html>
+ <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Formulário</title>
         <meta charset="UTF-8">
@@ -75,6 +75,7 @@ form textarea{
      background-color: rgb(238, 156, 147);
      font-family:Arial, Helvetica, sans-serif;
 }
+
 </style>
   
     
@@ -92,10 +93,8 @@ form textarea{
         <table>
             <thead>
                 <tr>
-
-      
            <th></th>
-           <th>ID Cardapio</th>
+                  <th>Nome</th>
                   <th></th>
                   <th>Quantidade</th>
                   <th></th>
@@ -109,7 +108,7 @@ form textarea{
                 
                
                 <td></td>
-                    <td th:text="${pedido.id_cardapio}"></td>
+                    <td th:text="${pedido.nomePedido}"></td>
                     <td></td>
                     <td th:text="${pedido.quantidade}"></td>
                     <td></td>
@@ -118,8 +117,15 @@ form textarea{
                    </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2">Total</th>
+                    <!-- Exibição do total de valores -->
+                    <th th:text="${#numbers.formatDecimal(totalValor, 1, 'COMMA', 2, 'POINT')}">0.00</th>
+                </tr>
+            </tfoot>
         </table>
-        <form action="pagamento">
+        <form th:action="@{/coffeteria/cardapio/pagamento}" method="get">
             <input type="submit" value="Finalizar pedido">
         </form>
     </div>
