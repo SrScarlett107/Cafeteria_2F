@@ -6,5 +6,6 @@ import com.Cafeteria.INF2FM.myproject2f.model.Adm;
 
 @Repository
 public interface AdmRepository extends JpaRepository<Adm, Long>{
+    String findByAdmAndSenha(String Adm, int Senha);
 
 }

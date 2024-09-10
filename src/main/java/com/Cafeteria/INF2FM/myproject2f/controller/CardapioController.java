@@ -23,10 +23,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.Cafeteria.INF2FM.myproject2f.model.Cardapio;
+import com.Cafeteria.INF2FM.myproject2f.model.Cupom;
 import com.Cafeteria.INF2FM.myproject2f.model.Pedido;
 import com.Cafeteria.INF2FM.myproject2f.repository.CardapioRepository;
 import com.Cafeteria.INF2FM.myproject2f.repository.PedidoRepository;
 import com.Cafeteria.INF2FM.myproject2f.service.CardapioService;
+import com.Cafeteria.INF2FM.myproject2f.service.CupomService;
+
+import net.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -232,6 +237,29 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 
         
         return "redirect:/coffeteria/cardapio/inicio";
+    }
+
+	@Autowired
+    private CupomService cupomService;
+	Cupom cupom;
+
+    @PostMapping("/verificar-cupom")
+    public String verificarCupom(@RequestParam("codigo") String codigo, @RequestParam("valor") double valorOriginal, Model model, HttpSession session) {
+       cupomService.verificarCupom(codigo);
+	  String cupomAtivo = cupom.getAtivo();
+	  Double totalValor = (Double) session.getAttribute("totalValor");
+        model.addAttribute("totalValor", totalValor);
+
+        if (cupomAtivo == "ativo") {
+            // Cupom encontrado e ativo, aplicar o desconto
+            totalValor = cupomService.aplicarDesconto(totalValor, 10.0);
+            model.addAttribute("mensagem", "Cupom aplicado com sucesso! Desconto de 10%.");
+        } else {
+            model.addAttribute("valorComDesconto", totalValor);
+            model.addAttribute("mensagem", "Cupom inválido ou expirado.");
+        }
+
+        return "pagamento"; // Nome da página Thymeleaf para exibir o resultado
     }
 	
 

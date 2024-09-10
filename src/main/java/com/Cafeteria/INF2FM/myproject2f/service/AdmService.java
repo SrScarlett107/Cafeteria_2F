@@ -10,6 +10,9 @@ public class AdmService {
 	public AdmService(AdmRepository admRepository) {
 		this.admRepository = admRepository;
 	}
-	
+	public String verificarAdm(String Adm, int Senha) {
+        // Verifica se o cupom existe e está ativo
+        return admRepository.findByAdmAndSenha(Adm, Senha);
+    }
 
 }

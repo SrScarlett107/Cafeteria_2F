@@ -13,7 +13,14 @@ public class Cupom {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String codigo;
+	private String ativo;
 	
+	public String getAtivo() {
+		return ativo;
+	}
+	public void setAtivo(String ativo) {
+		this.ativo = ativo;
+	}
 	public Long getId() {
 		return id;
 	}
