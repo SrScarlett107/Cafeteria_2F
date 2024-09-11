@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <head>
         <title>Login ADM</title>
         <meta charset="UTF-8">
         
@@ -22,8 +21,9 @@ body{
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: rgb(221, 175, 144);
+    background-color: #d9c3a6;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    background-image: url(/imagens/cafer.jpeg);
 }
 section{
     display: flex;
@@ -31,7 +31,7 @@ section{
     justify-content: center;
     flex-direction: column;
     padding: 10px 45px;
-    background-color: rgb(214, 183, 146);
+    background-color: #d9c3a6;
     width: 500px;
     border: 5px solid black;
     
@@ -55,13 +55,13 @@ form button{
     padding: 15px;
     cursor: pointer;
     font-size: 16px;
-    background: rgb(226, 193, 161);
+    background: rgb(190, 156, 122);
     border: 2px solid rgb(0, 0, 0);
     margin-bottom: 20px;
 }
 form button:hover{
 
-    background-color: rgb(194, 164, 134);
+    background-color: rgb(161, 105, 49);
 }
 .link{
     padding: 15px;
@@ -81,21 +81,18 @@ form textarea{
 
     
 </head>
-    <body background="cafer.jpeg" class="borda" style=" border-width: 5px; border-style:inset; border-color: #ca9b75" >
-     
+    <body>
         <section>
-        <form th:action="@{/coffeteria/Login/Login-ADM}" th:object="${Login}" method="post">
-            <h1>CAFETERIA  </h1>
+        <form action="get">
+            <h1>CAFETERIA</h1>
             <br>
-<strong>Nome do Administrador:</strong><input type="text"  required value="" th:field="*{nome}" id="nome" placeholder="Usuario*" maxlength="45"> 
-<br>
-<br>
-<strong>Senha:</strong>
-<input type="password" name="senha" id="senha" required value=""  pattern=".{6,}" th:field="*{senha}" placeholder="Senha  (6 caracteres)*" maxlength="10">
-<br>
-<br>
-
-<button type="submit">ACESSAR</button>
+<h1>Nome do Administrador:</h1>
+<input type="text" required  id="nome" placeholder="Usuario*" maxlength="45"> 
+<br />
+<h1>Senha:</h1>
+<input type="password" name="senha" id="senha" required value=""  pattern=".{6,}"  placeholder="Senha  (6 caracteres)*" maxlength="10">
+<br />
+<input type="submit" value="Login">
        </form>
     </section>
     </body>

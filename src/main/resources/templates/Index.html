@@ -46,10 +46,21 @@
         input:hover {
             background-color: #6f4f28; /* Marrom médio escuro */
         }
+        header{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <form action="Login">
+            <input type="submit" value="Configurações">
+        </form>
+    </header>
     <div class="container">
+     <img th:src="@{/imagens/Logo.png}" width="300px" height="300px">
         <form action="usuario-cardapio">
         <h1>Bem vindo a nossa Coffeteria</h1>
         <input type="submit" value="Abrir Cardapio">
