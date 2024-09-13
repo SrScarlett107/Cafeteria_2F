@@ -29,12 +29,15 @@ import com.Cafeteria.INF2FM.myproject2f.model.Cupom;
 import com.Cafeteria.INF2FM.myproject2f.model.Pedido;
 import com.Cafeteria.INF2FM.myproject2f.repository.AdmRepository;
 import com.Cafeteria.INF2FM.myproject2f.repository.CardapioRepository;
+import com.Cafeteria.INF2FM.myproject2f.repository.CupomRepository;
 import com.Cafeteria.INF2FM.myproject2f.repository.PedidoRepository;
 import com.Cafeteria.INF2FM.myproject2f.service.CardapioService;
 
 import net.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller
@@ -44,6 +47,12 @@ public class CardapioController {
 	private CardapioRepository cardapioRepository;
 
 	private CardapioService cardapioService;
+
+	@Autowired
+	AdmRepository admRepository;
+
+	@Autowired
+	CupomRepository cupomRepository;
 		
 	public CardapioController(CardapioService cardapioService) {
 		super();
@@ -205,9 +214,10 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 		return "Pedidos";
 	}
 	@GetMapping("/pagamento")
-	public String pagamento(Model model, HttpSession session) {
+	public String pagamento(Model model, HttpSession session, Cupom cupom) {
 		Double totalValor = (Double) session.getAttribute("totalValor");
         model.addAttribute("totalValor", totalValor);
+		model.addAttribute("cupom", cupom);
 
 		
 		return "pagamento";
@@ -234,7 +244,9 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 
 	}
 	@GetMapping("/Login")
-	public String login1(Model model) {
+	public String login1(Model model, Adm adm) {
+
+		model.addAttribute("adm", adm);
 		
 		return "LoginAdm";
 		
@@ -246,17 +258,38 @@ byte[] _foto = Base64.getDecoder().decode(foto);
         
         return "redirect:/coffeteria/cardapio/inicio";
     }
-	Adm adm;
-	
-	AdmRepository admRepository;
+
 	
 	@PostMapping("/logar")
 	public String logar(Model model, Adm adm) {
-		model.addAttribute("Adms", admRepository.findBy(null, null ) );
-		return "";
+		Adm admdb = admRepository.findByUsuario(adm.getUsuario());
+		if(admdb != null && adm.getSenha() == (admdb.getSenha())) {
+			return "redirect:/coffeteria/cardapio/novo-cardapio";
+			
+			}
+			
+		else {
+			return "redirect:/coffeteria/cardapio/Login";
+		}	
+	}
+
+	@PostMapping("/verificarCupom")
+	public String cupom(Model model, Cupom cupom, HttpSession session) {
+		Cupom cupomdb = cupomRepository.findByCodigo(cupom.getCodigo());
+		Double totalValor = (Double) session.getAttribute("totalValor");
+		model.addAttribute("totalValor", totalValor);
+		if (cupomdb != null) {
+			totalValor = totalValor - (totalValor*0.10);
+			return "redirect:/coffeteria/cardapio/pagamento";
+		}
+		else{
+			return "redirect:/coffeteria/cardapio/pagamento";
+		}
+
 		
 		
 	}
+	
 	
 
 

@@ -40,4 +40,4 @@ senha int,
 
 insert into adms values('Mateus', 1234456 )
 insert into adms values('Gisely', 6543211)
-insert into adms values('Matheus', 250706)
+insert into adms values('Matheus', 2507060)
