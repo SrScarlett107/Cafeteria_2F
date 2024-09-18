@@ -274,16 +274,16 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 	}
 
 	@PostMapping("/verificarCupom")
-	public String cupom(Model model, Cupom cupom, HttpSession session) {
+	public ResponseEntity<String> cupom(Model model, Cupom cupom, HttpSession session) {
 		Cupom cupomdb = cupomRepository.findByCodigo(cupom.getCodigo());
 		Double totalValor = (Double) session.getAttribute("totalValor");
 		model.addAttribute("totalValor", totalValor);
 		if (cupomdb != null) {
 			totalValor = totalValor - (totalValor*0.10);
-			return "redirect:/coffeteria/cardapio/pagamento";
+			return ResponseEntity.ok("redirect:/coffeteria/cardapio/pagamento");
 		}
 		else{
-			return "redirect:/coffeteria/cardapio/pagamento";
+			return ResponseEntity.ok("redirect:/coffeteria/cardapio/pagamento");
 		}
 
 		
