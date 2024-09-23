@@ -1,5 +1,8 @@
 package com.Cafeteria.INF2FM.myproject2f.model;
 
+import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,16 +14,27 @@ import javax.persistence.Table;
 public class Pagamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	private String cpf;
 	private String id_formaPagamento;
 	private double valor;
+	
+	@ElementCollection
+    private List<Pagamento> produtos;
 
-	public int getId() {
+	public List<Pagamento> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Pagamento> produtos) {
+		this.produtos = produtos;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

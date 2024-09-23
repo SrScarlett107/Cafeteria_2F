@@ -1,5 +1,6 @@
 package com.Cafeteria.INF2FM.myproject2f.controller;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -26,10 +27,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.Cafeteria.INF2FM.myproject2f.model.Adm;
 import com.Cafeteria.INF2FM.myproject2f.model.Cardapio;
 import com.Cafeteria.INF2FM.myproject2f.model.Cupom;
+import com.Cafeteria.INF2FM.myproject2f.model.Pagamento;
 import com.Cafeteria.INF2FM.myproject2f.model.Pedido;
 import com.Cafeteria.INF2FM.myproject2f.repository.AdmRepository;
 import com.Cafeteria.INF2FM.myproject2f.repository.CardapioRepository;
 import com.Cafeteria.INF2FM.myproject2f.repository.CupomRepository;
+import com.Cafeteria.INF2FM.myproject2f.repository.PagamentoRepository;
 import com.Cafeteria.INF2FM.myproject2f.repository.PedidoRepository;
 import com.Cafeteria.INF2FM.myproject2f.service.CardapioService;
 
@@ -53,6 +56,9 @@ public class CardapioController {
 
 	@Autowired
 	CupomRepository cupomRepository;
+
+	@Autowired
+	PagamentoRepository pagamentoRepository;
 		
 	public CardapioController(CardapioService cardapioService) {
 		super();
@@ -199,7 +205,7 @@ byte[] _foto = Base64.getDecoder().decode(foto);
         return "redirect:/coffeteria/cardapio/todos-pedidos";
     }
 	@GetMapping("/todos-pedidos")
-	public String todosPedidos(Model model, RedirectAttributes redirectAttributes, HttpSession session) {
+	public String todosPedidos(Model model, RedirectAttributes redirectAttributes, HttpSession session, Pedido pedido) {
 		model.addAttribute("Pedidos", pedidoRepository.findAll());
 		List<Pedido> pedidos = pedidoRepository.findAll();
 		double totalValor = pedidos.stream().mapToDouble(Pedido::getValor).sum();  // Calcula a soma dos valores
@@ -211,8 +217,11 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 		 redirectAttributes.addFlashAttribute("totalValor", totalValor);
 		 session.setAttribute("totalValor", totalValor); 
 
+
 		return "Pedidos";
 	}
+
+
 	@GetMapping("/pagamento")
 	public String pagamento(Model model, HttpSession session, Cupom cupom) {
 		Double totalValor = (Double) session.getAttribute("totalValor");
@@ -222,6 +231,7 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 		
 		return "pagamento";
 	}
+
 	@GetMapping("/cartao")
 	public String cartao(Model model) {
 
