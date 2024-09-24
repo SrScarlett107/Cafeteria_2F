@@ -269,12 +269,18 @@ byte[] _foto = Base64.getDecoder().decode(foto);
         return "redirect:/coffeteria/cardapio/inicio";
     }
 
+	@GetMapping("/interface")
+	public String admInterface(Model model) {
+		return "confirmacaoADM";
+	}
+	
+
 	
 	@PostMapping("/logar")
 	public String logar(Model model, Adm adm) {
 		Adm admdb = admRepository.findByUsuario(adm.getUsuario());
 		if(admdb != null && adm.getSenha() == (admdb.getSenha())) {
-			return "redirect:/coffeteria/cardapio/novo-cardapio";
+			return "redirect:/coffeteria/cardapio/interface";
 			
 			}
 			

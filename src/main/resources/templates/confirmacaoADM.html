@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção do Administrador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color:antiquewhite;
+            background-image: url(/imagens/fundo_cont.jpeg);
+            background-repeat:unset;
+        }
+        .container {
+            background-color: rgb(212, 162, 121);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            text-align: left;
+        }
+        .pedido-box {
+            background-color: antiquewhite;
+            width: 400px;
+            height: 300px;
+            border: 2px solid #333;
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 20px;
+        }
+        .buttons-container {
+            display: inline-block;
+            vertical-align: top;
+        }
+        .button {
+            width: 150px;
+            height: 50px;
+            margin-bottom: 10px;
+            background-color: rgb(151, 90, 43);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: rgb(151, 90, 43);
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: rgb(54, 66, 77); font-style: italic;">Pedidos:</h1>
+    <div class="container">
+        <div class="pedido-box">
+            <table>
+                <th></th>
+                <tbody>
+                    <td></td>
+                </tbody>
+            </table>
+        </div>
+        <div class="buttons-container">
+            <form th:action="@{/coffeteria/cardapio/novo-cardapio}">
+                <input type="submit" value="Adicionar Produto" class="button">
+            </form>
+            <form th:action="@{/coffeteria/cardapio/todos-cardapios}">
+                <input type="submit" value="Verificar Produtos" class="button">
+            </form>
+            <form th:action="@{/coffeteria/cardapio/interface}"></form>
+                <input type="submit" value="Atualizar Pedidos" class="button">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

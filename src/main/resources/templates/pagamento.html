@@ -23,27 +23,7 @@
             else {
                 form.action = 'pagamento';  // Endereço padrão ou vazio
             }
-<<<<<<< HEAD
         } 
-=======
-        }
-            function cupom() {
-            fetch('/verificarCopom', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ chave: 'codigo' }) // Dados opcionais que você pode enviar
-            })
-            .then(response => response.text()) // Captura a resposta como texto
-            .then(data => {
-                alert('Resposta do servidor: ' + data); // Exibe a resposta no alerta
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-            });
-        }
->>>>>>> de84b96433765844668dfe8240b50d12041f3d4d
     </script>
     <style>
         body {
@@ -128,13 +108,9 @@
             <input type="text" name="cpf"  pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" required>
             <br />
             <h2>Cupom:</h2>
-            <input type="text" name="cupom" id="cupom" maxlength="5px" th:field="*{codigo}">
-<<<<<<< HEAD
-            <input type="submit" value="Aplicar Cupom" th:action="@{/coffeteria/cardapio/verificarCupom}">
-=======
-            <button onclick="cupom()">Aplicar Cupom</button>
+            <input type="text" name="cupom" id="cupom" maxlength="5px">
+            <button>Aplicar Cupom</button>
         </form>
->>>>>>> de84b96433765844668dfe8240b50d12041f3d4d
             <br />
             <h2>Total a Pagar: R$ <span th:text="${totalValor}"></span></h2>
             <br />
