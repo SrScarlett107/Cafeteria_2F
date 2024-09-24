@@ -7,7 +7,6 @@ go
 use myCafeteria2f
 
 
-
 create table categorias(
 id bigint identity primary key,
 categoria varchar(30),
