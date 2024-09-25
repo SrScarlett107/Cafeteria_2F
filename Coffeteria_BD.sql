@@ -26,7 +26,7 @@ Constraint fk_categoria foreign key (id_categoria) references categorias(id)
 )
 create table cupons(
 id bigint identity primary key,
-cupom char(5)
+codigo char(5)
 )
 
 

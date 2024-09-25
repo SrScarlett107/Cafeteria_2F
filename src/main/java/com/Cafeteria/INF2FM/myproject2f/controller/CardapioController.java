@@ -32,7 +32,6 @@ import com.Cafeteria.INF2FM.myproject2f.model.Pedido;
 import com.Cafeteria.INF2FM.myproject2f.repository.AdmRepository;
 import com.Cafeteria.INF2FM.myproject2f.repository.CardapioRepository;
 import com.Cafeteria.INF2FM.myproject2f.repository.CupomRepository;
-import com.Cafeteria.INF2FM.myproject2f.repository.PagamentoRepository;
 import com.Cafeteria.INF2FM.myproject2f.repository.PedidoRepository;
 import com.Cafeteria.INF2FM.myproject2f.service.CardapioService;
 
@@ -57,8 +56,6 @@ public class CardapioController {
 	@Autowired
 	CupomRepository cupomRepository;
 
-	@Autowired
-	PagamentoRepository pagamentoRepository;
 		
 	public CardapioController(CardapioService cardapioService) {
 		super();
@@ -70,6 +67,8 @@ public class CardapioController {
 
 
 	private String foto = "";
+	
+	private double totalValor = 0;
 	
 	@GetMapping("/inicio")
 	public String inicio(Model model) {
@@ -208,7 +207,7 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 	public String todosPedidos(Model model, RedirectAttributes redirectAttributes, HttpSession session, Pedido pedido) {
 		model.addAttribute("Pedidos", pedidoRepository.findAll());
 		List<Pedido> pedidos = pedidoRepository.findAll();
-		double totalValor = pedidos.stream().mapToDouble(Pedido::getValor).sum();  // Calcula a soma dos valores
+		totalValor = pedidos.stream().mapToDouble(Pedido::getValor).sum();  // Calcula a soma dos valores
 
 		model.addAttribute("Pedidos", pedidos);
 		model.addAttribute("totalValor", totalValor);  // Passa o total para o modelo
@@ -222,15 +221,7 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 	}
 
 
-	@GetMapping("/pagamento")
-	public String pagamento(Model model, HttpSession session, Cupom cupom) {
-		Double totalValor = (Double) session.getAttribute("totalValor");
-        model.addAttribute("totalValor", totalValor);
-		model.addAttribute("cupom", cupom);
 
-		
-		return "pagamento";
-	}
 
 	@GetMapping("/cartao")
 	public String cartao(Model model) {
@@ -288,18 +279,33 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 			return "redirect:/coffeteria/cardapio/Login";
 		}	
 	}
+	
+	@GetMapping("/pagamento")
+	public String pagamento(Model model, HttpSession session, Cupom cupom) {
+		
+		session.setAttribute("totalValor", totalValor);
+        model.addAttribute("totalValor", session.getAttribute("totalValor"));
+		model.addAttribute("cupom", cupom);
+
+		
+		return "pagamento";
+	}
 
 	@PostMapping("/verificarCupom")
-	public ResponseEntity<String> cupom(Model model, Cupom cupom, HttpSession session) {
+	public String cupom(Model model, Cupom cupom, HttpSession session) {
 		Cupom cupomdb = cupomRepository.findByCodigo(cupom.getCodigo());
-		Double totalValor = (Double) session.getAttribute("totalValor");
-		model.addAttribute("totalValor", totalValor);
+		model.addAttribute("cupom", cupom);
+
 		if (cupomdb != null) {
+		
 			totalValor = totalValor - (totalValor*0.10);
-			return ResponseEntity.ok("redirect:/coffeteria/cardapio/pagamento");
+			session.setAttribute("totalValor", totalValor);
+			model.addAttribute("totalValor", session.getAttribute("totalValor"));
+	
+			return "redirect:/coffeteria/cardapio/pagamento";
 		}
 		else{
-			return ResponseEntity.ok("redirect:/coffeteria/cardapio/pagamento");
+			return "redirect:/coffeteria/cardapio/pagamento";
 		}
 
 		
