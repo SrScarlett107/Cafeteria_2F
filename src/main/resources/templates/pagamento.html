@@ -114,22 +114,15 @@
 				<option value="pix">Pix</option>
 			</select>
 			<br />
-			<h2>Informe seu CPF:</h2>
-			<input type="text" name="cpf" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})"
-				required>
-			<br />
-
+		<h2>Total a Pagar: R$ <span th:text="${totalValor}"></span></h2>
+		<br />
+		<input type="submit" value="Finalizar pagamento">
 		</form>
 		<form th:action="@{/coffeteria/cardapio/verificarCupom}" th:object="${cupom}" method="post"
 			enctype="multipart/form-data">
 			<h2>Cupom:</h2>
 			<input type="text" name="cupom" id="cupom" maxlength="5px" th:field="*{codigo}">
 			<input type="submit" value="Aplicar cupom">
-		</form>
-		<br />
-		<h2>Total a Pagar: R$ <span th:text="${totalValor}"></span></h2>
-		<br />
-		<input type="submit" value="Finalizar pagamento">
 		</form>
 	</div>
 </body>
