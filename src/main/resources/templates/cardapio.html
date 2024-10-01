@@ -278,6 +278,23 @@ h2{
   font-weight: bolder;
 }
 
+.button {
+            width: 150px;
+            height: 50px;
+            background-color: rgb(151, 90, 43);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position:absolute;
+            left: 45%;
+            right: 50%;
+        }
+
 </style>
   
     
@@ -305,7 +322,7 @@ h2{
                 </div>
     </div>
     <form action="/coffeteria/cardapio/adicionar-pedido" method="post">
-    <input type="number" name="quantidade" min="1" required/>
+    <input type="number" name="quantidade" min="1" required placeholder="Quantidade*"/>
                         <input type="hidden" name="cardapioId" th:value="${cardapio.id}"/>
                         <input type="hidden" name="nomePedido" th:value="${cardapio.nome}">
                         <input type="hidden" name="valor" th:value="${cardapio.valor}                          ">
@@ -316,6 +333,9 @@ h2{
             </div>
         </div>
            <br />
-              </div>      
+              </div> 
+              <form th:action="@{/coffeteria/cardapio/todos-pedidos}">
+                <input type="submit" value="Carrinho" class="button">
+              </form>     
     </body>
 </html>
