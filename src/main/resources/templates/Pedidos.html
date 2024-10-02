@@ -76,6 +76,21 @@ form textarea{
      font-family:Arial, Helvetica, sans-serif;
 }
 
+.button {
+            width: 150px;
+            height: 50px;
+            margin-bottom: 10px;
+            background-color: rgb(151, 90, 43);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
 </style>
   
     
@@ -84,7 +99,7 @@ form textarea{
         <section>
         <div>
             <div>
-                <a th:href="@{/coffeteria/cardapio/usuario-cardapio}" >
+                <a th:href="@{/coffeteria/cardapio/usuario-cardapio}" class="button">
                         Voltar ao cardapio
                 </a>
 
@@ -113,6 +128,13 @@ form textarea{
                     <td th:text="${pedido.quantidade}"></td>
                     <td></td>
                     <td th:text="${pedido.valor}"></td>
+                    <td></td>
+                    <td>
+                        <a th:href="@{/coffeteria/cardapio/deletar/{id}(id=${pedido.id})}" class="button"
+                           onclick="return confirm('Tem certeza que deseja remover este pedido?');">
+                           Remover pedido
+                        </a>
+                    </td>
                     <td></td>
                    </td>
                 </tr>

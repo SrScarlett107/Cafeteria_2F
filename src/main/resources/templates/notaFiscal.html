@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nota Fiscal</title>
+</head>
+<body>
+    <h1>Nota Fiscal</h1>
+    <p>Número: <span th:text="${pagamento.id}"></span></p>
+    <p>CPF: <span th:text="${pagamento.cpf;}"></span></p>
+    <p>Forma de pagamento: <span th:text="${pagamento.id_formaPagamento;}"></span></p>
+    <p>Valor: R$ <span th:text="${notaFiscal.valor}"></span></p>
+</body>
+</html>

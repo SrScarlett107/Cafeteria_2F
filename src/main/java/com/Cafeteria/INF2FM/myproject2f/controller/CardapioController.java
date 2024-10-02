@@ -311,6 +311,23 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 		
 		
 	}
+	@GetMapping("/deletar/{id}")
+    public String deletarPessoa(@PathVariable("id") Long id) {
+    pedidoRepository.deleteById(id);
+        return "redirect:/coffeteria/cardapio/todos-pedidos"; // Redireciona para a lista de pessoas
+    }
+
+	@GetMapping("/nota-fiscal")public String exibirNotaFiscal(Model model) {
+		Pagamento pagamento = new Pagamento();
+	
+		model.addAttribute("pagamento", pagamento);
+			// Enviar o e-mailString body = "Número: " + nota.getNumero() +
+					  "\nCpf: " + pagamento.getCpf() +
+					  "\nValor: R$ " + pagamento.getValor();
+		emailService.enviarEmail("destinatario@exemplo.com", "Nota Fiscal", body);
+	
+		return "notaFiscal"; // Nome do template
+	}
 	
 	
 
