@@ -9,6 +9,7 @@ import com.Cafeteria.INF2FM.myproject2f.model.Cardapio;
 @Repository
 public interface CardapioRepository extends JpaRepository<Cardapio, Long>{
 void deleteAll();
+void deleteById(long id);
 
 
 }

@@ -145,21 +145,36 @@ public class CardapioController {
 	}
 
 	@PostMapping("/update/{id}")
-	public String atualizarCard(@RequestParam(value = "file", required = false) MultipartFile file,
-			@PathVariable("id") Long id, @ModelAttribute("cardapio") Cardapio cardapio, BindingResult result) {
+public String atualizarCard(
+        @RequestParam(value = "file", required = false) MultipartFile file, // Arquivo recebido como MultipartFile
+        @PathVariable("id") Long id, 
+        @ModelAttribute("cardapio") Cardapio cardapio, 
+        BindingResult result) {
 
-		if (result.hasErrors()) {
-			cardapio.setId(id);
-			return "editar-card";
-		}
-byte[] _foto = Base64.getDecoder().decode(foto);
-		
-		
-		foto = "";
+    // Verifique se há erros de validação
+    if (result.hasErrors()) {
+        cardapio.setId(id);
+        return "editar-card";
+    }
 
-		cardapioRepository.save(cardapio);
-		return "redirect:/coffeteria/cardapio/todos-cardapios";
-	}
+    // Se o arquivo 'foto' não estiver vazio, faça o upload
+    if (!foto.isEmpty()) {
+        try {
+            // Converte MultipartFile para byte[]
+            cardapio.setFoto(file.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace(); // Log do erro
+        }
+    } else {
+        // Caso não haja uma nova imagem, mantenha a imagem existente
+        Cardapio existingCardapio = cardapioService.findById(id);
+        cardapio.setFoto(existingCardapio.getFoto());
+    }
+
+    // Salve o cardápio no banco de dados
+    cardapioRepository.save(cardapio);
+    return "redirect:/coffeteria/cardapio/todos-cardapios";
+}
 
 	@PostMapping
 	public String upload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
@@ -312,23 +327,15 @@ byte[] _foto = Base64.getDecoder().decode(foto);
 		
 	}
 	@GetMapping("/deletar/{id}")
-    public String deletarPessoa(@PathVariable("id") Long id) {
+    public String deletarPedido(@PathVariable("id") Long id) {
     pedidoRepository.deleteById(id);
-        return "redirect:/coffeteria/cardapio/todos-pedidos"; // Redireciona para a lista de pessoas
+        return "redirect:/coffeteria/cardapio/todos-pedidos";
     }
-
-	@GetMapping("/nota-fiscal")public String exibirNotaFiscal(Model model) {
-		Pagamento pagamento = new Pagamento();
-	
-		model.addAttribute("pagamento", pagamento);
-			// Enviar o e-mailString body = "Número: " + nota.getNumero() +
-					  "\nCpf: " + pagamento.getCpf() +
-					  "\nValor: R$ " + pagamento.getValor();
-		emailService.enviarEmail("destinatario@exemplo.com", "Nota Fiscal", body);
-	
-		return "notaFiscal"; // Nome do template
-	}
-	
+	@GetMapping("/deletarItem/{id}")
+    public String deletarItem(@PathVariable("id") Long id) {
+    cardapioRepository.deleteById(id);
+        return "redirect:/coffeteria/cardapio/todos-cardapios"; 
+    }
 	
 
 

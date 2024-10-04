@@ -79,6 +79,23 @@
 			background-color: rgb(255, 255, 255);
 			font-family: Arial, Helvetica, sans-serif;
 		}
+		.button {
+            width: 100px;
+            height: 50px;
+            margin-bottom: 20px;
+            background-color: rgb(151, 90, 43);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+			left: 1px;
+			top: 1px;
+			position: absolute;
+        }
 	</style>
 
 
@@ -86,6 +103,9 @@
 
 <body>
 	<div>
+		<a th:href="@{/coffeteria/cardapio/interface}" class="button">
+			Retornar
+		</a>
 		<section>
 			<form th:action="@{/coffeteria/cardapio/salvar}" th:object="${cardapio}" method="post" enctype="multipart/form-data" >
 

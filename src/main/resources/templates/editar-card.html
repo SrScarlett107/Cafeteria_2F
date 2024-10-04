@@ -121,6 +121,12 @@
                                 <input type="text" th:field="*{codStatusCardapio}" class="form-control" id="codStatusCardapio" placeholder="Status do cardapio">
                                 <span th:if="${#fields.hasErrors('codStatusCardapio')}" th:errors="*{codStatusCardapio}" class="text-danger"></span>
                             </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="foto" class="col-form-label">Foto:</label>
+                                <input type="file" name="file" class="form-control" id="file">
+                                <span th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}" class="text-danger"></span>
+                            </div>
                
                             <div class="form-group col-md-12">
                                 <input type="submit"  class="btn btn-primary mb-2" value="Atualizar Produto">
