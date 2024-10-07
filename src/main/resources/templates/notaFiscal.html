@@ -5,9 +5,28 @@
 </head>
 <body>
     <h1>Nota Fiscal</h1>
-    <p>Número: <span th:text="${pagamento.id}"></span></p>
-    <p>CPF: <span th:text="${pagamento.cpf;}"></span></p>
-    <p>Forma de pagamento: <span th:text="${pagamento.id_formaPagamento;}"></span></p>
-    <p>Valor: R$ <span th:text="${notaFiscal.valor}"></span></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pedido: ${Pedidos}">
+
+                    <td th:text="${pedido.nomePedido}"></td>
+
+                    <td th:text="${pedido.quantidade}"></td>
+
+                    <td th:text="${pedido.valor}"></td>
+                  
+                
+            </tr>
+   
+        </tbody>
+        <h2>Total a Pagar: R$ <span th:text="${totalValor}"></span></h2>
+    </table>
 </body>
 </html>

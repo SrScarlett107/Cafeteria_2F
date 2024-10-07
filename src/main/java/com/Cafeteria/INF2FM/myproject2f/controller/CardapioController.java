@@ -322,9 +322,22 @@ public String atualizarCard(
 		else{
 			return "redirect:/coffeteria/cardapio/pagamento";
 		}
+		
 
 		
 		
+	}
+
+	@GetMapping("/notaFiscal")
+	public String nota(Model model, HttpSession session, Pedido pedido, Pagamento pagamento ) {
+		model.addAttribute("totalValor", session.getAttribute("totalValor"));
+		session.setAttribute("totalValor", totalValor);
+
+		List<Pedido> pedidos = pedidoRepository.findAll();
+		model.addAttribute("Pedidos", pedidos);
+		model.addAttribute("pagamento", pagamento);
+		
+		return "notaFiscal";
 	}
 	@GetMapping("/deletar/{id}")
     public String deletarPedido(@PathVariable("id") Long id) {
@@ -336,6 +349,8 @@ public String atualizarCard(
     cardapioRepository.deleteById(id);
         return "redirect:/coffeteria/cardapio/todos-cardapios"; 
     }
+
+	
 	
 
 
