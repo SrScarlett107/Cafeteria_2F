@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.CupomFragment">
+
+    <TextView
+        android:id="@+id/textCupom3"
+        android:layout_width="408dp"
+        android:layout_height="117dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="cursive"
+        android:lineSpacingExtra="0sp"
+        android:text="Cupom:"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="100sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton7"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        tools:layout_editor_absoluteX="0dp"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/textCupom2"
+        android:textColor="@color/black"
+        android:layout_width="408dp"
+        android:layout_height="117dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="cursive"
+        android:lineSpacingExtra="0sp"
+        android:text="Clique aqui para gerar o cupom:"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton7"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <ImageButton
+        android:id="@+id/generateCouponButton"
+        android:layout_width="150dp"
+        android:layout_height="106dp"
+        android:layout_marginLeft="135dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginBottom="106dp"
+        android:background="#00FFFFFF"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/textGerarCupom"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/textCupom"
+        app:srcCompat="@drawable/mango" />
+
+    <TextView
+        android:id="@+id/couponTextView"
+        android:textColor="@color/black"
+        android:fontFamily="cursive"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="48sp"
+        android:layout_width="399dp"
+        android:layout_height="129dp"
+        android:layout_marginLeft="5.5dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton7" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        android:src="@drawable/logo" />
+
+</FrameLayout>

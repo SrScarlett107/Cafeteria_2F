@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.BlankFragment">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/texto2"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginBottom="8dp"
+        />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="144dp"
+        android:layout_height="193dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="410dp"
+        android:layout_marginBottom="8dp"
+        app:srcCompat="@drawable/cafenovo3"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="382dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="146dp"
+        android:layout_height="121dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="8dp"
+        app:srcCompat="@drawable/cafenovo"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="134dp" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="139dp"
+        android:layout_height="131dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginBottom="8dp"
+        app:srcCompat="@drawable/cafenovo2"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="281dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        android:src="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/texto1" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/texo3"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginBottom="8dp"
+        />
+
+</FrameLayout>

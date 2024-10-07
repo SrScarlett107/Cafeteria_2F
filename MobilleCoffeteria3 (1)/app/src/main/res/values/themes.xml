@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MobilleCoffeteria3" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/cinza</item>
+        <item name="android:windowLightStatusBar">true</item> <!-- Para ícones escuros na StatusBar -->
+    </style>
+
+    <style name="Theme.MobilleCoffeteria3" parent="Base.Theme.MobilleCoffeteria3" />
+</resources>
