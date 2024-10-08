@@ -3,6 +3,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -23,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.TemplateEngine;
 
 import com.Cafeteria.INF2FM.myproject2f.model.Adm;
 import com.Cafeteria.INF2FM.myproject2f.model.Cardapio;
@@ -39,6 +45,17 @@ import net.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
 
 
@@ -339,6 +356,37 @@ public String atualizarCard(
 		
 		return "notaFiscal";
 	}
+	@Autowired
+    private JavaMailSender mailSender;
+
+    @Autowired
+    private TemplateEngine templateEngine;
+
+    @PostMapping("/enviar-email")
+    public String enviarEmail(String emailDestinatario) throws MessagingException {
+        // Criar o contexto e adicionar dados
+        Context context = new Context();
+        context.setVariable("data", "08 de Outubro de 2024");
+
+        // Processar o template para HTML
+        String html = templateEngine.process("notaFiscal", context);
+
+        // Criar e enviar o email
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+        helper.setTo(emailDestinatario);
+        helper.setSubject("Página HTML Enviada");
+        helper.setText(html, true);  // o segundo argumento é para indicar que é HTML
+
+        mailSender.send(message);
+
+        return "email-enviado"; // Retornar uma view de confirmação, se necessário
+    }
+
+
+
+
 	@GetMapping("/deletar/{id}")
     public String deletarPedido(@PathVariable("id") Long id) {
     pedidoRepository.deleteById(id);
