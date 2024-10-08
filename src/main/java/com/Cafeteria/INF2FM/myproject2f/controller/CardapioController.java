@@ -362,26 +362,38 @@ public String atualizarCard(
     @Autowired
     private TemplateEngine templateEngine;
 
-    @PostMapping("/enviar-email")
-    public String enviarEmail(String emailDestinatario) throws MessagingException {
+    @GetMapping("/enviar-email")
+    public String enviarEmail(String emailDestinatario, Model model, HttpSession session, Pedido pedido, Pagamento pagamento) throws MessagingException {
         // Criar o contexto e adicionar dados
+		Object totalValor = session.getAttribute("totalValor");
+	
+		List<Pedido> pedidos = pedidoRepository.findAll();
+
         Context context = new Context();
         context.setVariable("data", "08 de Outubro de 2024");
 
+		
+		context.setVariable("data", "08 de Outubro de 2024");
+        context.setVariable("totalValor", totalValor);
+        context.setVariable("pagamento", pagamento);
+        context.setVariable("pedidos", pedidos);
+
+
         // Processar o template para HTML
         String html = templateEngine.process("notaFiscal", context);
+		emailDestinatario = "edu25070@gmail.com";
 
         // Criar e enviar o email
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
         helper.setTo(emailDestinatario);
-        helper.setSubject("Página HTML Enviada");
+        helper.setSubject("Nota Fiscal Gerada");
         helper.setText(html, true);  // o segundo argumento é para indicar que é HTML
 
         mailSender.send(message);
 
-        return "email-enviado"; // Retornar uma view de confirmação, se necessário
+        return "redirect:/coffeteria/cardapio/inicio"; // Retornar uma view de confirmação, se necessário
     }
 
 

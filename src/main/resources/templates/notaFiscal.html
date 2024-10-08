@@ -5,6 +5,8 @@
 </head>
 <body>
     <h1>Nota Fiscal</h1>
+    <p>Data: <span th:text="${data}"></span></p>
+    <h2>Total a Pagar: R$ <span th:text="${totalValor}"></span></h2>
     <table>
         <thead>
             <tr>
@@ -14,7 +16,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="pedido: ${Pedidos}">
+          
+            <tr th:each="pedido: ${pedidos}">
 
                     <td th:text="${pedido.nomePedido}"></td>
 
@@ -26,7 +29,7 @@
             </tr>
    
         </tbody>
-        <h2>Total a Pagar: R$ <span th:text="${totalValor}"></span></h2>
+        
     </table>
 </body>
 </html>
