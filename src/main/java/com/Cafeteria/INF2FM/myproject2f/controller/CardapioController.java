@@ -207,6 +207,12 @@ public String atualizarCard(
 
 		return "pagina-sucesso";
 	}
+
+	@GetMapping("/sucesso-nota")
+	String showPageSucessNota() {
+
+		return "SucessoNota";
+	}
 	
 	@GetMapping("/showImage/{id}")
 	@ResponseBody
@@ -363,10 +369,10 @@ public String atualizarCard(
     private TemplateEngine templateEngine;
 
     @GetMapping("/enviar-email")
-    public String enviarEmail(String emailDestinatario, Model model, HttpSession session, Pedido pedido, Pagamento pagamento) throws MessagingException {
+    public String enviarEmail(@RequestParam String emailDestinatario, Model model, HttpSession session, Pedido pedido, Pagamento pagamento) throws MessagingException {
         // Criar o contexto e adicionar dados
 		Object totalValor = session.getAttribute("totalValor");
-	
+		
 		List<Pedido> pedidos = pedidoRepository.findAll();
 
         Context context = new Context();
@@ -381,7 +387,6 @@ public String atualizarCard(
 
         // Processar o template para HTML
         String html = templateEngine.process("notaFiscal", context);
-		emailDestinatario = "edu25070@gmail.com";
 
         // Criar e enviar o email
         MimeMessage message = mailSender.createMimeMessage();
@@ -393,7 +398,7 @@ public String atualizarCard(
 
         mailSender.send(message);
 
-        return "redirect:/coffeteria/cardapio/inicio"; // Retornar uma view de confirmação, se necessário
+        return "redirect:/coffeteria/cardapio/sucesso-nota"; // Retornar uma view de confirmação, se necessário
     }
 
 
