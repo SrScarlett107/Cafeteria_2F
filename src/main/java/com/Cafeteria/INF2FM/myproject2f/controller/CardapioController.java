@@ -376,7 +376,6 @@ public String atualizarCard(
 		List<Pedido> pedidos = pedidoRepository.findAll();
 
         Context context = new Context();
-        context.setVariable("data", "08 de Outubro de 2024");
 
 		
 		context.setVariable("data", "16 de Outubro de 2024");
