@@ -18,6 +18,7 @@ public class Pedido {
 	private Long id_pagamento;
 	private Long id_cardapio;
 	private String nomePedido;
+	private String email;
 	public Long getId() {
 		return id;
 	}
@@ -59,6 +60,12 @@ public class Pedido {
 	}
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 
